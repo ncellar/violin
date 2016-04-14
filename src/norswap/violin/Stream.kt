@@ -18,6 +18,11 @@ interface Stream <out T: Any>
          */
         inline operator fun <U: Any> invoke(crossinline nextImpl: () -> U?)
             = object: Stream<U> { override fun next() = nextImpl() }
+
+        /**
+         * An empty stream, assignable to Stream<T> for any T.
+         */
+        val empty = Stream<Nothing> { null }
     }
 
     /**

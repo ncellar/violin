@@ -12,5 +12,10 @@ interface Walk <out T: Any>: Stream<T>
          */
         inline operator fun <U: Any> invoke(crossinline nextImpl: () -> U?)
             = object: Walk<U> { override fun next() = nextImpl() }
+
+        /**
+         * An empty walk, assignable to Walk<T> for any T.
+         */
+        val empty = Stream<Nothing> { null }
     }
 }
