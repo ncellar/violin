@@ -5,6 +5,5 @@ package norswap.violin
  */
 interface Walkable <out T: Any>: Streamable<T>
 {
-    fun walk(): Walk<T>
-    override fun stream(): Walk<T> = walk()
+    override fun stream(): Walk<T>
 }
