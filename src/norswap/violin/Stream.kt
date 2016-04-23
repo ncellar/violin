@@ -154,3 +154,35 @@ inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Strea
     var ongoing = true
     return filter { ongoing && expr { ongoing = !stop(it) ; true } }
 }
+
+/**
+ * Returns a stream consisting of the items of this stream, minus all the items at the beginning
+ * of the stream that match [drop].
+ */
+inline fun <T: Any> Stream<T>.dropWhile(crossinline drop: (T) -> Boolean): Stream<T> {
+    var dropping = false
+    return filter { !dropping || expr { dropping = drop(it) ; !dropping } }
+}
+
+/**
+ * Returns a stream consisting of the items of this stream, minus its [n] first items.
+ */
+fun <T: Any> Stream<T>.drop(n: Int = 1): Stream<T> {
+    var i = 0
+    return dropWhile { (i < n) after { if(it) ++i } }
+}
+
+/**
+ * Returns a stream consisting of the items of this stream, until an item that doesn't match
+ * [keep] is encountered (this item will not be yielded by the returned stream).
+ */
+inline fun <T: Any> Stream<T>.takeWhile(crossinline keep: (T) -> Boolean): Stream<T>
+    = upTo { !keep(it) }
+
+/**
+ * Returns a stream consisting of the items of this stream, with a limit of [n].
+ */
+fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
+    var i = 0
+    return takeWhile { (i < n) after { if (it) ++i } }
+}
