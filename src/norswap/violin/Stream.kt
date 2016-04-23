@@ -1,5 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.stream
+import norswap.violin.utils.after
 import java.util.NoSuchElementException
 import java.util.Spliterator
 import java.util.function.Consumer
@@ -79,3 +80,52 @@ interface Stream <out T: Any>
         return StreamSupport.stream(spliterator, false)
     }
 }
+
+inline fun <T: Any, R: Any> Stream<T>.map(crossinline f: (T) -> R): Stream<R>
+    = Stream { next()?.let(f) }
+
+inline fun <T: Any> Stream<T>.apply(crossinline f: T.() -> Unit): Stream<T>
+    = Stream { next()?.apply(f) }
+
+inline fun <T: Any> Stream<T>.after(crossinline f: (T) -> Unit): Stream<T>
+    = Stream { next()?.after(f) }
+
+inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T>
+    = Stream {
+        var next: T?
+        do { next = next() } while (next?.let{ !keep(it) }?:false)
+        next
+    }
+
+fun <T: Any> Stream<T>.indexed(): Stream<Pair<Int, T>>
+    = object: Stream<Pair<Int, T>> {
+        private var i = 0
+        override fun next() = this@indexed.next()?.let { Pair(i++, it) }
+    }
+
+inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Stream<R>
+    = object: Stream<R> {
+        var nextStream: Stream<R>? = null
+        override fun next(): R? {
+            var next: R?
+            do {
+                nextStream = this@fmap.next()?.let(f)
+                next = nextStream?.next()
+            } while (nextStream != null && next == null)
+            return next
+        }
+    }
+
+fun <T: Any> Stream<Stream<T>>.flatten(): Stream<T>
+    = fmap { it }
+
+inline fun <T: Any> Stream<T>.upTo(crossinline stop: (T) -> Boolean): Stream<T>
+    = Stream { next()?.let { if (stop(it)) null else it } }
+
+inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Stream<T>
+    = object: Stream<T> {
+        var shouldStop = false
+        override fun next()
+            = if (shouldStop) null
+              else this@upThrough.next()?.after { shouldStop = stop(it) }
+    }
