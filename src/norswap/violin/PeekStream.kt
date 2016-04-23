@@ -1,11 +1,27 @@
 package norswap.violin
 import norswap.violin.stream.Stream
+import norswap.violin.utils.after
 
 /**
  * A peek stream is a stream where one can peek at the next value without advancing the stream.
  */
 interface PeekStream <out T: Any>: Stream<T>
 {
+    companion object {
+        inline operator fun <U: Any> invoke(crossinline nextImpl: () -> U?)
+            = object: PeekStream<U> {
+                var next: U? = null
+                override fun peek()
+                    = if (next == null) { next = nextImpl() ; next }
+                      else next
+                override fun next()
+                    = if (next == null) nextImpl()
+                      else next.after { next = null }
+            }
+        operator fun <U: Any> invoke(stream: Stream<U>)
+            = invoke { stream.next() }
+    }
+
     /**
      * Peek at the next value (the value that [next] would return) without advancing the stream.
      *
