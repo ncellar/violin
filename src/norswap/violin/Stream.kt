@@ -136,9 +136,6 @@ inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Str
         }
     }
 
-fun <T: Any> Stream<Stream<T>>.flatten(): Stream<T>
-    = fmap { it }
-
 /**
  * Returns a stream consisting of the items of this stream, until an item matching [stop] is
  * encountered. The returned stream does not yield the matching item.
