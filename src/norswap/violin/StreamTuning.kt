@@ -8,7 +8,7 @@ import java.util.stream.Stream as JStream
  * Be cautious: this assumes the iterator is finite and so returns a [Walk].
  * If not so, assign the result to a [Stream] to avoid errors.
  */
-fun <T: Any> Iterator<T>.tune()
+fun <T: Any> Iterator<T>.tune(): Walk<T>
     = Walk { if(hasNext()) next() else null }
 
 /**
@@ -17,7 +17,7 @@ fun <T: Any> Iterator<T>.tune()
  * Be cautious: this assumes the iterable yields finite iterators and so returns a [Walkable].
  * If not so, assign the result to a [Streamable] to avoid errors.
  */
-fun <T: Any> Iterable<T>.tune()
+fun <T: Any> Iterable<T>.tune(): Walkable<T>
     = object: Walkable<T> {
         override fun stream() = iterator().tune()
     }
