@@ -1,6 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.stream
 import norswap.violin.utils.after
+import norswap.violin.utils.expr
 import java.util.NoSuchElementException
 import java.util.Spliterator
 import java.util.function.Consumer
@@ -140,18 +141,16 @@ inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Str
  * Returns a stream consisting of the items of this stream, until an item matching [stop] is
  * encountered. The returned stream does not yield the matching item.
  */
-
-inline fun <T: Any> Stream<T>.upTo(crossinline stop: (T) -> Boolean): Stream<T>
-    = Stream { next()?.let { if (stop(it)) null else it } }
+inline fun <T: Any> Stream<T>.upTo(crossinline stop: (T) -> Boolean): Stream<T> {
+    var ongoing = true
+    return filter { ongoing && expr { ongoing = !stop(it) ; ongoing } }
+}
 
 /**
  * Returns a stream consisting of the items of this stream, until an item matching [stop] is
  * encountered. The matching item will be the last item of the returned stream.
  */
-inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Stream<T>
-    = object: Stream<T> {
-        var shouldStop = false
-        override fun next()
-            = if (shouldStop) null
-              else this@upThrough.next()?.after { shouldStop = stop(it) }
-    }
+inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Stream<T> {
+    var ongoing = true
+    return filter { ongoing && expr { ongoing = !stop(it) ; true } }
+}
