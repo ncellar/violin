@@ -9,8 +9,6 @@ import java.util.stream.StreamSupport
 /**
  * A stream is a (potentially infinite) sequence of items.
  * As such, a stream usually describes a lazy computation.
- *
- * For streams that are always finite, use [Walk].
  */
 interface Stream <out T: Any>
 {
