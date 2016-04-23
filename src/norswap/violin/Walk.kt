@@ -1,4 +1,5 @@
 package norswap.violin
+import norswap.violin.stream.Stream
 
 /**
  * A walk is a finite [Stream].

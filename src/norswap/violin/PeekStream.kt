@@ -1,4 +1,5 @@
 package norswap.violin
+import norswap.violin.stream.Stream
 
 /**
  * A peek stream is a stream where one can peek at the next value without advancing the stream.

@@ -1,4 +1,5 @@
-package norswap.violin
+@file:Suppress("PackageDirectoryMismatch")
+package norswap.violin.stream
 import java.util.NoSuchElementException
 import java.util.Spliterator
 import java.util.function.Consumer

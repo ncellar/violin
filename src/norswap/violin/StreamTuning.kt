@@ -1,4 +1,5 @@
 package norswap.violin
+import norswap.violin.stream.Stream
 import java.util.stream.Stream as JStream
 
 /**
