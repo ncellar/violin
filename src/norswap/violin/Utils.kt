@@ -14,3 +14,13 @@ inline infix fun <T> T.after(f: (T) -> Unit): T {
     f(this)
     return this
 }
+
+/**
+ * Shorthand for [StringBuilder.append].
+ */
+operator fun StringBuilder.plusAssign(s: String) { append(s) }
+
+/**
+ * Shorthand for [StringBuilder.append].
+ */
+operator fun StringBuilder.plusAssign(o: Any?) { append(o) }
