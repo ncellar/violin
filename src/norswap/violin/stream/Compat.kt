@@ -1,4 +1,7 @@
 package norswap.violin.stream
+import norswap.violin.utils.after
+import java.util.NoSuchElementException
+import java.util.stream.StreamSupport
 import java.util.stream.Stream as JStream
 
 /// Conversion to Stream ---------------------------------------------------------------------------
@@ -93,4 +96,39 @@ fun <T: Any> Iterable<T>.stream(): Stream<T>
 fun <T: Any> List<T>.reverseStream(): Stream<T>
     = reversed().stream()
 
-// -------------------------------------------------------------------------------------------------
+/// Conversion from Stream -------------------------------------------------------------------------
+
+/**
+ * Returns an iterator backed by the stream.
+ */
+fun <T: Any> Stream<T>.iterator() = object: Iterator<T> {
+    private var peek: T? = this@iterator.next()
+    override fun hasNext() = peek != null
+    override fun next(): T
+        = (peek ?: throw NoSuchElementException()) after { peek = this@iterator.next() }
+}
+
+/**
+ * Returns a java stream backed by the stream.
+ */
+fun <T: Any> Stream<T>.javaStream() = StreamSupport.stream(
+    java.lang.Iterable<T> { this@javaStream.iterator() }.spliterator(),
+    false)
+
+/// Conversion from Streamable ---------------------------------------------------------------------
+
+/**
+ * Returns an iterable backed by the streamable.
+ */
+fun <T: Any> Streamable<T>.iterable() = object: Iterable<T> {
+    override fun iterator() = this@iterable.stream().toIterator()
+}
+
+/**
+ * Returns a sequence backed by the streamable.
+ */
+fun <T: Any> Streamable<T>.sequence() = object: Sequence<T> {
+    override fun iterator() = this@sequence.stream().toIterator()
+}
+
+/// ------------------------------------------------------------------------------------------------
