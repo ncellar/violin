@@ -23,7 +23,7 @@ inline fun <reified T: Any> Stream<T>.array(): Array<T> {
  *
  * e.g. `Stream(1, 2, 3).foldl(0) { r, t -> r + t }` == `(((0 + 1) + 2) + 3)`
  */
-inline fun <T: Any, R: Any> Stream<T>.foldl(first: R, reduce: (R, T) -> R): R {
+inline fun <T: Any, R> Stream<T>.foldl(first: R, reduce: (R, T) -> R): R {
     var tmp = first
     each { tmp = reduce(tmp, it) }
     return tmp
@@ -35,7 +35,7 @@ inline fun <T: Any, R: Any> Stream<T>.foldl(first: R, reduce: (R, T) -> R): R {
  *
  * e.g. `Stream(1, 2, 3).foldr(0) { r, t -> r + t }` == `(0 + (1 + (2 + 3)))`
  */
-inline fun <reified T: Any, R: Any> Stream<T>.foldr(last: R, reduce: (R, T) -> R): R
+inline fun <reified T: Any, R> Stream<T>.foldr(last: R, reduce: (R, T) -> R): R
     = array().reverseStream().foldl(last, reduce)
 
 /**
