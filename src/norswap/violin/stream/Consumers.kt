@@ -1,4 +1,5 @@
 package norswap.violin.stream
+import java.util.Comparator
 
 /**
  * Applies [f] to each item in the stream.
@@ -99,7 +100,49 @@ fun <T: Any> Stream<T>.count(): Int {
 }
 
 /**
- * Returns the number of items equal to [e] in the stream, consuming all items in the process.
+ * Returns the number of items equal to [e] in the stream.
  */
 fun <T: Any> Stream<T>.count(e: Any?): Int
     = filter { it == e }.count()
+
+/**
+ * Return the maximum item of the stream.
+ * If two items compare identical, the earliest will be preferred.
+ */
+fun <T: Comparable<T>> Stream<T>.max(): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (r >= t) r else t }
+
+/**
+ * Return the maximum item of the stream, determined by delegation to [f].
+ * If two items compare identical, the earliest will be preferred.
+ */
+inline fun <T: Any, U: Comparable<U>> Stream<T>.maxBy(f: (T) -> U): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (f(r) >= f(t)) r else t }
+
+/**
+ * Return the maximum item of the stream, determined by delegation to [cmp].
+ * If two items compare identical, the earliest will be preferred.
+ */
+fun <T: Any> Stream<T>.maxWith(cmp: Comparator<T>): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) >= 0) r else t }
+
+/**
+ * Return the minimum item of the stream.
+ * If two items compare identical, the earliest will be preferred.
+ */
+fun <T: Comparable<T>> Stream<T>.min(): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (r <= t) r else t }
+
+/**
+ * Return the minimum item of the stream, determined by delegation to [f].
+ * If two items compare identical, the earliest will be preferred.
+ */
+inline fun <T: Any, U: Comparable<U>> Stream<T>.minBy(f: (T) -> U): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (f(r) <= f(t)) r else t }
+
+/**
+ * Return the minimum item of the stream, determined by delegation to [cmp].
+ * If two items compare identical, the earliest will be preferred.
+ */
+fun <T: Any> Stream<T>.minWith(cmp: Comparator<T>): T?
+    = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) <= 0) r else t }
