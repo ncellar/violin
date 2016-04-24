@@ -158,3 +158,36 @@ inline fun <T: Any, U: Comparable<U>> Stream<T>.minBy(f: (T) -> U): T?
  */
 fun <T: Any> Stream<T>.minWith(cmp: Comparator<T>): T?
     = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) <= 0) r else t }
+
+/**
+ * Creates a string from all the items separated using [separator] and using the given [prefix] and
+ * [postfix] if supplied. If you specify a non-negative value of [limit], only the first [limit]
+ * items will be appended, followed by the [truncated] string (which defaults to "...").
+ * If non-null, [transform] is applied to all items prior to appending.
+ */
+fun <T: Any, A : Appendable> Stream<T>.joinTo(
+    buffer: A,
+    separator: CharSequence = ", ",
+    prefix: CharSequence = "",
+    postfix: CharSequence = "",
+    limit: Int = -1,
+    truncated: CharSequence = "...",
+    transform: ((T) -> CharSequence)? = null
+): A
+    = list().joinTo(buffer, separator, prefix, postfix, limit, truncated, transform)
+
+/**
+ * Creates a string from all the items separated using [separator] and using the given [prefix] and
+ * [postfix] if supplied. If you specify a non-negative value of [limit], only the first [limit]
+ * items will be appended, followed by the [truncated] string (which defaults to "...").
+ * If non-null, [transform] is applied to all items prior to appending.
+ */
+fun <T: Any> Stream<T>.toString(
+    separator: CharSequence = ", ",
+    prefix: CharSequence = "",
+    postfix: CharSequence = "",
+    limit: Int = -1,
+    truncated: CharSequence = "...",
+    transform: ((T) -> CharSequence)? = null
+): String
+    = list().joinToString(separator, prefix, postfix, limit, truncated, transform)
