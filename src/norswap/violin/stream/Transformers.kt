@@ -25,39 +25,39 @@ inline fun <T: Any> Stream<T>.after(crossinline f: (T) -> Unit): Stream<T>
 /**
  * Returns a stream consisting of the items of this stream that match the [keep] predicate.
  */
-inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T>
-    = Stream {
-    var next: T?
-    do { next = next() } while (next?.let{ !keep(it) }?:false)
-    next
-}
+inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T> =
+    Stream {
+        var next: T?
+        do { next = next() } while (next?.let{ !keep(it) }?:false)
+        next
+    }
 
 /**
  * Returns a stream consisting of the items of this stream, paired with its index (starting
  * at 0 for the next item of this stream).
  */
-fun <T: Any> Stream<T>.indexed(): Stream<Pair<Int, T>>
-    = object: Stream<Pair<Int, T>> {
-    private var i = 0
-    override fun next() = this@indexed.next()?.let { Pair(i++, it) }
-}
+fun <T: Any> Stream<T>.indexed(): Stream<Pair<Int, T>> =
+    object: Stream<Pair<Int, T>> {
+        private var i = 0
+        override fun next() = this@indexed.next()?.let { Pair(i++, it) }
+    }
 
 /**
  * Returns a stream consisting of the results of replacing each item of this stream with the
  * contents of a stream produced by applying [f] to the item.
  */
-inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Stream<R>
-    = object: Stream<R> {
-    var nextStream: Stream<R>? = null
-    override fun next(): R? {
-        var next: R?
-        do {
-            nextStream = this@fmap.next()?.let(f)
-            next = nextStream?.next()
-        } while (nextStream != null && next == null)
-        return next
+inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Stream<R> =
+    object: Stream<R> {
+        var nextStream: Stream<R>? = null
+        override fun next(): R? {
+            var next: R?
+            do {
+                nextStream = this@fmap.next()?.let(f)
+                next = nextStream?.next()
+            } while (nextStream != null && next == null)
+            return next
+        }
     }
-}
 
 /**
  * Returns a stream consisting of the items of this stream, until an item matching [stop] is
@@ -113,8 +113,8 @@ fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
  * Returns a stream consisting of pairs made up by one item of this stream and one item of
  * [other]. The stream only runs as far as the shortest of the two streams.
  */
-fun <T: Any, U: Any> Stream<T>.zip(other: Stream<U>): Stream<Pair<T, U>>
-    = Stream {
+fun <T: Any, U: Any> Stream<T>.zip(other: Stream<U>): Stream<Pair<T, U>> =
+    Stream {
         val a = next()
         val b = other.next()
         if (a != null && b != null) Pair(a, b) else null
@@ -124,8 +124,8 @@ fun <T: Any, U: Any> Stream<T>.zip(other: Stream<U>): Stream<Pair<T, U>>
  * Returns a stream consisting of pairs made up by one item of this stream and one item of
  * [other]. The stream runs as far as the longest of the two streams.
  */
-fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>>
-    = Stream {
+fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>> =
+    Stream {
         val a = next()
         val b = other.next()
         if (a != null || b != null) Pair(a, b) else null
@@ -135,8 +135,8 @@ fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>>
  * Returns a stream consisting of the items of this stream, after subtracting the first occurrence
  * of each item in [filter] **in the same order as the appear in [filter]**.
  */
-fun <T: Any> Stream<T>.diff(filter: Stream<T>): Stream<T>
-    = Stream {
+fun <T: Any> Stream<T>.diff(filter: Stream<T>): Stream<T> =
+    Stream {
         var n = next()
         while (n != null && n == filter.next()) { n = next() }
         n
