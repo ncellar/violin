@@ -2,6 +2,8 @@
   <dictionary name="norswap">
     <words>
       <w>fmap</w>
+      <w>foldl</w>
+      <w>foldr</w>
       <w>spliterator</w>
       <w>streamable</w>
       <w>ziplong</w>
