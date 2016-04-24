@@ -53,3 +53,53 @@ inline fun <T: Any> Stream<T>.reduce(f: (T, T) -> T): T?
  */
 inline fun <reified T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
     = next()?.let { foldr(it, f) }
+
+/**
+ * Returns the last item of this stream.
+ */
+fun <T: Any> Stream<T>.last(): T? {
+    var next = next()
+    var last: T? = null
+    while (next != null) { last = next ; next = next() }
+    return last
+}
+
+/**
+ * Returns the first item of this stream that satisfies the given predicate, if any.
+ */
+inline fun <T: Any> Stream<T>.first(crossinline p: (T) -> Boolean): T?
+    = filter(p).next()
+
+/**
+ * Returns the last item of this stream that satisfies the given predicate, if any.
+ */
+inline fun <T: Any> Stream<T>.last(crossinline p: (T) -> Boolean): T?
+    = filter(p).last()
+
+/**
+ * Indicates whether any item of this stream matches the given predicate.
+ * This consumes items in the stream up to and including the one matching the predicate.
+ */
+inline fun <T: Any> Stream<T>.any(crossinline p: (T) -> Boolean): Boolean
+    = first(p) != null
+
+/**
+ * Indicates whether all items of this stream match the given predicate.
+ */
+inline fun <T: Any> Stream<T>.all(crossinline p: (T) -> Boolean): Boolean
+    = first { !p(it) } == null
+
+/**
+ * Returns the number of items left in the stream, consuming all items in the process.
+ */
+fun <T: Any> Stream<T>.count(): Int {
+    var count = 0
+    each { ++count }
+    return count
+}
+
+/**
+ * Returns the number of items equal to [e] in the stream, consuming all items in the process.
+ */
+fun <T: Any> Stream<T>.count(e: Any?): Int
+    = filter { it == e }.count()
