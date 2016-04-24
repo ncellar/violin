@@ -10,13 +10,25 @@ inline fun <T: Any> Stream<T>.each(f: (T) -> Unit) {
 }
 
 /**
- * Pulls all the items of the stream into an array and returns it.
+ * Pulls all the items of the stream into a mutable list and returns it.
  */
-inline fun <reified T: Any> Stream<T>.array(): Array<T> {
+fun <T: Any> Stream<T>.mutableList(): MutableList<T> {
     val list = arrayListOf<T>()
     each { list.add(it) }
-    return list.toTypedArray()
+    return list
 }
+
+/**
+ * Pulls all the items of the stream into a list and returns it.
+ */
+fun <T: Any> Stream<T>.list(): List<T>
+    = mutableList()
+
+/**
+ * Pulls all the items of the stream into an array and returns it.
+ */
+inline fun <reified T: Any> Stream<T>.array(): Array<T>
+    = mutableList().toTypedArray()
 
 /**
  * Folds [reduce] over the items of the stream, from left to right, using [first] as initial
