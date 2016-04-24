@@ -37,3 +37,19 @@ inline fun <T: Any, R: Any> Stream<T>.foldl(first: R, reduce: (R, T) -> R): R {
  */
 inline fun <reified T: Any, R: Any> Stream<T>.foldr(last: R, reduce: (R, T) -> R): R
     = array().reverseStream().foldl(last, reduce)
+
+/**
+ * Folds [f] over the items of the stream, from left to right.
+ *
+ * e.g. `Stream(1, 2, 3).reduce { r, t -> r + t }` == ((1 + 2) + 3)`
+ */
+inline fun <T: Any> Stream<T>.reduce(f: (T, T) -> T): T?
+    = next()?.let { foldl(it, f) }
+
+/**
+ * Folds [f] over the items of the stream, from right to left.
+ *
+ * e.g. `Stream(1, 2, 3).reduce { r, t -> r + t }` == `(1 + (2 + 3))`
+ */
+inline fun <reified T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
+    = next()?.let { foldr(it, f) }
