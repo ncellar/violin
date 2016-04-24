@@ -10,6 +10,14 @@ inline fun <T: Any> Stream<T>.each(f: (T) -> Unit) {
 }
 
 /**
+ * Applies [f] to each indexed value in the stream.
+ */
+inline fun <T: Any> Stream<IndexedValue<T>>.eachIndexed(f: (Int, T) -> Unit) {
+    var tmp = next()
+    while (tmp != null) { f(tmp.index, tmp.value) ; tmp = next() }
+}
+
+/**
  * Pulls all the items of the stream into a mutable list and returns it.
  */
 fun <T: Any> Stream<T>.mutableList(): MutableList<T> {
