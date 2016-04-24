@@ -58,9 +58,39 @@ fun <T: Any> Array<out T>.reverseStream(): Stream<T> {
 }
 
 /**
+ * Returns a stream consisting of the non-null items of the array.
+ */
+fun <T: Any> Array<out T?>.pureStream(): Stream<T> {
+    var i = 0
+    return Stream {
+        var item: T? = null
+        while (i < size && item == null) item = get(i++)
+        item
+    }
+}
+
+/**
+ * Returns a stream consisting of the non-null items of the array, in reverse order.
+ */
+fun <T: Any> Array<out T?>.pureReverseStream(): Stream<T> {
+    var i = size
+    return Stream {
+        var item: T? = null
+        while (i > 0 && item == null) item = get(--i)
+        item
+    }
+}
+
+/**
  * Returns a stream consisting of the items of the iterable.
  */
 fun <T: Any> Iterable<T>.stream(): Stream<T>
     = iterator().tune()
+
+/**
+ * Returns a stream consisting of the items of the list, in reverse order.
+ */
+fun <T: Any> List<T>.reverseStream(): Stream<T>
+    = reversed().stream()
 
 // -------------------------------------------------------------------------------------------------
