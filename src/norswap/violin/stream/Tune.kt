@@ -50,6 +50,14 @@ fun <T: Any> Array<out T>.stream(): Stream<T>{
 }
 
 /**
+ * Returns a stream consisting of the items of the array, in reverse order.
+ */
+fun <T: Any> Array<out T>.reverseStream(): Stream<T> {
+    var i = size
+    return Stream { if (i > 0) get(--i) else null }
+}
+
+/**
  * Returns a stream consisting of the items of the iterable.
  */
 fun <T: Any> Iterable<T>.stream(): Stream<T>
