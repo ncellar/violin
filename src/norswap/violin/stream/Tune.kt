@@ -39,4 +39,18 @@ fun <T: Any> Iterable<T>.tune(): Streamable<T>
         override fun stream() = iterator().tune()
     }
 
+/// Stream from standard types ---------------------------------------------------------------------
+
+/**
+ * Returns a stream consisting of the items of the array.
+ */
+fun <T: Any> Array<out T>.stream(): Stream<T>
+    = iterator().tune()
+
+/**
+ * Returns a stream consisting of the items of the iterable.
+ */
+fun <T: Any> Iterable<T>.stream(): Stream<T>
+    = iterator().tune()
+
 // -------------------------------------------------------------------------------------------------
