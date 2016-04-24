@@ -19,6 +19,12 @@ interface Stream <out T: Any>
             = object: Stream<U> { override fun next() = nextImpl() }
 
         /**
+         * Enables the syntax `Stream(1, 2, 3)` instead of `arrayOf(1, 2, 3).stream()`.
+         */
+        operator fun <U: Any> invoke(vararg items: U)
+            = items.stream()
+
+        /**
          * An empty stream, assignable to Stream<T> for any T.
          */
         val empty = Stream<Nothing> { null }
