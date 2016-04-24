@@ -1,5 +1,4 @@
-package norswap.violin
-import norswap.violin.stream.Stream
+package norswap.violin.stream
 import norswap.violin.utils.after
 
 /**

@@ -1,5 +1,4 @@
-package norswap.violin
-import norswap.violin.stream.Stream
+package norswap.violin.stream
 
 /**
  * A streamable is an object that can yield or be represented as a [Stream].

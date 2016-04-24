@@ -1,5 +1,4 @@
-package norswap.violin
-import norswap.violin.stream.Stream
+package norswap.violin.stream
 import java.util.stream.Stream as JStream
 
 /**
@@ -9,7 +8,7 @@ import java.util.stream.Stream as JStream
  * If not so, assign the result to a [Stream] to avoid errors.
  */
 fun <T: Any> Iterator<T>.tune(): Stream<T>
-    = Stream { if(hasNext()) next() else null }
+    = Stream { if (hasNext()) next() else null }
 
 /**
  * Converts an iterable into a streamable.
