@@ -44,8 +44,10 @@ fun <T: Any> Iterable<T>.tune(): Streamable<T>
 /**
  * Returns a stream consisting of the items of the array.
  */
-fun <T: Any> Array<out T>.stream(): Stream<T>
-    = iterator().tune()
+fun <T: Any> Array<out T>.stream(): Stream<T>{
+    var i = 0
+    return Stream { if (i < size) get(i++) else null }
+}
 
 /**
  * Returns a stream consisting of the items of the iterable.
