@@ -1,4 +1,3 @@
-@file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.stream
 import norswap.violin.utils.after
 import norswap.violin.utils.expr
