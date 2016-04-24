@@ -36,10 +36,10 @@ inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T
  * Returns a stream consisting of the items of this stream, paired with its index (starting
  * at 0 for the next item of this stream).
  */
-fun <T: Any> Stream<T>.indexed(): Stream<Pair<Int, T>> =
-    object: Stream<Pair<Int, T>> {
+fun <T: Any> Stream<T>.indexed(): Stream<IndexedValue<T>> =
+    object: Stream<IndexedValue<T>> {
         private var i = 0
-        override fun next() = this@indexed.next()?.let { Pair(i++, it) }
+        override fun next() = this@indexed.next()?.let { IndexedValue(i++, it) }
     }
 
 /**
