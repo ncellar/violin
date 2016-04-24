@@ -108,3 +108,25 @@ fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
     var i = 0
     return takeWhile { (i < n) after { if (it) ++i } }
 }
+
+/**
+ * Returns a stream consisting of pairs made up by one item of this stream and one item of
+ * [other]. The stream only runs as far as the shortest of the two streams.
+ */
+fun <T: Any, U: Any> Stream<T>.zip(other: Stream<U>): Stream<Pair<T, U>>
+    = Stream {
+        val a = next()
+        val b = other.next()
+        if (a != null && b != null) Pair(a, b) else null
+    }
+
+/**
+ * Returns a stream consisting of pairs made up by one item of this stream and one item of
+ * [other]. The stream runs as far as the longest of the two streams.
+ */
+fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>>
+    = Stream {
+        val a = next()
+        val b = other.next()
+        if (a != null || b != null) Pair(a, b) else null
+    }
