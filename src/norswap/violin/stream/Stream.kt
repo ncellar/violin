@@ -42,8 +42,11 @@ interface Stream <out T: Any>
      *
      * The stream and the iterator are linked:
      * items consumed within one will not show up in the other.
+     *
+     * This method ensures that streams can be used in Kotlin for-loops.
+     * This is why it isn't called `toIterator`.
      */
-    fun toIterator()
+    fun iterator()
         = object: Iterator<T> {
         private var peek: T? = null
         override fun hasNext(): Boolean {
@@ -59,7 +62,7 @@ interface Stream <out T: Any>
      * The stream and the sequence are linked:
      * items consumed within one will not show up in the other.
      */
-    fun toSequence() = Sequence { toIterator() }
+    fun toSequence() = Sequence { iterator() }
 
     /**
      * Converts this to a java stream.

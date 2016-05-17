@@ -121,14 +121,14 @@ fun <T: Any> Stream<T>.javaStream() = StreamSupport.stream(
  * Returns an iterable backed by the streamable.
  */
 fun <T: Any> Streamable<T>.iterable() = object: Iterable<T> {
-    override fun iterator() = this@iterable.stream().toIterator()
+    override fun iterator() = this@iterable.stream().iterator()
 }
 
 /**
  * Returns a sequence backed by the streamable.
  */
 fun <T: Any> Streamable<T>.sequence() = object: Sequence<T> {
-    override fun iterator() = this@sequence.stream().toIterator()
+    override fun iterator() = this@sequence.stream().iterator()
 }
 
 /// ------------------------------------------------------------------------------------------------
