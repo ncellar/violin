@@ -3,12 +3,6 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="PegdownDocletIdea.ProjectConfiguration">
-    <option name="enabled" value="false" />
-    <option name="renderingOptions">
-      <RenderingOptions />
-    </option>
-  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
