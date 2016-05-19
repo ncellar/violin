@@ -63,9 +63,11 @@ inline fun <T: Any> Stream<T>.reduce(f: (T, T) -> T): T?
  * Folds [f] over the items of the stream, from right to left.
  *
  * e.g. `Stream(1, 2, 3).reduce { r, t -> r + t }` == `(1 + (2 + 3))`
+ *
+ * WARNING: compared to [foldr], the order of the parameter are reversed!
  */
 inline fun <reified T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
-    = next()?.let { foldr(it, f) }
+    = array().reverseStream().reduce { a, b -> f(b, a) }
 
 /**
  * Returns the last item of this stream.
