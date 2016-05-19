@@ -14,8 +14,7 @@ import org.testng.annotations.Test
     testStream { sequenceOf(*it).tune() }
 }
 
-@Test(groups = arrayOf("Compat.Array_stream"))
-fun Array_stream() {
+@Test fun Array_stream() {
     testStream { it.stream() }
 }
 
@@ -34,8 +33,7 @@ fun Array_stream() {
     Assert.assertNull(arrayOf<Int?>(null, null).pureStream().next())
 }
 
-@Test(dependsOnMethods = arrayOf("Array_reverseStream", "Array_pureStream"))
-fun Array_pureReverseStream() {
+@Test fun Array_pureReverseStream() {
     val stream = arrayOf(null, null, 3, null, null, 2, null, null, 1, null, null).pureReverseStream()
     for (i in 1..3) Assert.assertEquals(stream.next(), i)
     Assert.assertNull(stream.next())
