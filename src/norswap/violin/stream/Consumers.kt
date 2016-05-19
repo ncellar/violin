@@ -99,7 +99,8 @@ inline fun <T: Any> Stream<T>.any(crossinline p: (T) -> Boolean): Boolean
     = first(p) != null
 
 /**
- * Indicates whether all items of this stream match the given predicate.
+ * Indicates whether all items of this stream match the given predicate
+ * (true if the stream is empty).
  */
 inline fun <T: Any> Stream<T>.all(crossinline p: (T) -> Boolean): Boolean
     = first { !p(it) } == null
