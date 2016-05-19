@@ -50,11 +50,13 @@ inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Str
     object: Stream<R> {
         var nextStream: Stream<R>? = null
         override fun next(): R? {
-            var next: R?
-            do {
-                nextStream = this@fmap.next()?.let(f)
+            var next: R? = null
+            while (next == null) {
+                if (nextStream == null) nextStream = this@fmap.next()?.let(f)
+                if (nextStream == null) return null
                 next = nextStream?.next()
-            } while (nextStream != null && next == null)
+                if (next == null) nextStream = null
+            }
             return next
         }
     }
