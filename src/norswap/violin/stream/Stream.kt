@@ -1,4 +1,5 @@
 package norswap.violin.stream
+import norswap.violin.utils.after
 import java.util.NoSuchElementException
 import java.util.Spliterator
 import java.util.function.Consumer
@@ -46,14 +47,15 @@ interface Stream <out T: Any>
      * This method ensures that streams can be used in Kotlin for-loops.
      * This is why it isn't called `toIterator`.
      */
-    fun iterator()
-        = object: Iterator<T> {
+    operator fun iterator() = object: Iterator<T> {
         private var peek: T? = null
         override fun hasNext(): Boolean {
             if (peek == null) peek = this@Stream.next()
             return peek != null
         }
-        override fun next() = if (hasNext()) peek!! else throw NoSuchElementException()
+        override fun next() =
+            if (hasNext()) peek!!.after { peek = null }
+            else throw NoSuchElementException()
     }
 
     /**
