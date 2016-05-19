@@ -48,14 +48,10 @@ interface Stream <out T: Any>
      * This is why it isn't called `toIterator`.
      */
     operator fun iterator() = object: Iterator<T> {
-        private var peek: T? = null
-        override fun hasNext(): Boolean {
-            if (peek == null) peek = this@Stream.next()
-            return peek != null
-        }
-        override fun next() =
-            if (hasNext()) peek!!.after { peek = null }
-            else throw NoSuchElementException()
+        private var peek: T? = this@Stream.next()
+        override fun hasNext() = peek != null
+        override fun next(): T
+            = (peek ?: throw NoSuchElementException()) after { peek = this@Stream.next() }
     }
 
     /**
@@ -72,18 +68,7 @@ interface Stream <out T: Any>
      * Both streams are linked:
      * items consumed within one will not show up in the other.
      */
-    fun toJavaStream(): java.util.stream.Stream<@UnsafeVariance T>
-    {
-        val spliterator = object: Spliterator<T> {
-            override fun estimateSize() = Long.MAX_VALUE
-            override fun characteristics() = Spliterator.NONNULL
-            override fun trySplit() = null
-            override fun tryAdvance(action: Consumer<in T>?): Boolean {
-                val next = next()
-                next?.let { action!!.accept(it) }
-                return next != null
-            }
-        }
-        return StreamSupport.stream(spliterator, false)
-    }
+    fun toJavaStream() = StreamSupport.stream(
+        java.lang.Iterable<@UnsafeVariance T> { this@Stream.iterator() }.spliterator(),
+        false)
 }

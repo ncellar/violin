@@ -13,4 +13,18 @@ interface Streamable <out T: Any>
      * the same sequence of items.
      */
     fun stream(): Stream<T>
+
+    /**
+     * Returns an iterable backed by the streamable.
+     */
+    fun iterable() = object: Iterable<T> {
+        override fun iterator() = this@Streamable.stream().iterator()
+    }
+
+    /**
+     * Returns a sequence backed by the streamable.
+     */
+    fun sequence() = object: Sequence<T> {
+        override fun iterator() = this@Streamable.stream().iterator()
+    }
 }
