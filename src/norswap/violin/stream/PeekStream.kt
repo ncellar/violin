@@ -27,6 +27,12 @@ interface PeekStream <out T: Any>: Stream<T>
          */
         operator fun <U: Any> invoke(stream: Stream<U>)
             = invoke { stream.next() }
+
+        /**
+         * Creates a [PeekStream] from the given items.
+         */
+        operator fun <U: Any> invoke(vararg items: U)
+            = invoke(Stream(*items))
     }
 
     /**
