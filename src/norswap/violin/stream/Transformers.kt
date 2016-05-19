@@ -130,14 +130,3 @@ fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>> =
         val b = other.next()
         if (a != null || b != null) Pair(a, b) else null
     }
-
-/**
- * Returns a stream consisting of the items of this stream, after subtracting the first occurrence
- * of each item in [filter] **in the same order as the appear in [filter]**.
- */
-fun <T: Any> Stream<T>.diff(filter: Stream<T>): Stream<T> =
-    Stream {
-        var n = next()
-        while (n != null && n == filter.next()) { n = next() }
-        n
-    }
