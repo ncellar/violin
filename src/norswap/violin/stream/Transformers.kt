@@ -82,7 +82,7 @@ inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Strea
  * of the stream that match [drop].
  */
 inline fun <T: Any> Stream<T>.dropWhile(crossinline drop: (T) -> Boolean): Stream<T> {
-    var dropping = false
+    var dropping = true
     return filter { !dropping || expr { dropping = drop(it) ; !dropping } }
 }
 
