@@ -1,9 +1,7 @@
-package norswap.violin
-import norswap.violin.stream.PeekStream
-import norswap.violin.stream.Streamable
-import norswap.violin.stream.count
-import norswap.violin.stream.joinToString
-import norswap.violin.stream.stream
+@file:Suppress("PackageDirectoryMismatch")
+package norswap.violin.link
+import norswap.violin.Stack
+import norswap.violin.stream.*
 import norswap.violin.utils.after
 
 /**

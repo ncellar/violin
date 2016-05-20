@@ -1,6 +1,6 @@
 package norswap.violin.stream
-import norswap.violin.LinkList
 import norswap.violin.Stack
+import norswap.violin.link.LinkList
 import java.util.Comparator
 
 /**
