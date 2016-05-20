@@ -36,7 +36,7 @@ fun <T: Any> Sequence<T>.tune(): Stream<T>
  */
 fun <T: Any> Iterable<T>.tune(): Streamable<T>
     = object: Streamable<T> {
-        override fun stream() = iterator().tune()
+        override fun stream() = this@tune.iterator().tune()
     }
 
 /// Stream from standard types ---------------------------------------------------------------------
