@@ -222,7 +222,7 @@ fun <T: Any, A : Appendable> Stream<T>.joinTo(
  * items will be appended, followed by the [truncated] string (which defaults to "...").
  * If non-null, [transform] is applied to all items prior to appending.
  */
-fun <T: Any> Stream<T>.toString(
+fun <T: Any> Stream<T>.joinToString(
     separator: CharSequence = ", ",
     prefix: CharSequence = "",
     postfix: CharSequence = "",
