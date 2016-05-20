@@ -1,6 +1,8 @@
 package norswap.violin
 import norswap.violin.stream.PeekStream
 import norswap.violin.stream.Streamable
+import norswap.violin.stream.count
+import norswap.violin.stream.tune
 import norswap.violin.utils.after
 
 /**
@@ -32,7 +34,7 @@ operator fun <T: Any> Link<T>?.iterator() = this?.iterator() ?: emptyList<T>().i
  */
 class LinkList<T: Any> (
     var link: Link<T>? = null,
-    override var size: Int = link.iterator().asSequence().count()
+    override var size: Int = link.iterator().tune().count()
 ): Stack<T>, Cloneable
 {
     override fun stream(): PeekStream<T> = link.stream()
