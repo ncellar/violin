@@ -106,3 +106,7 @@ val intComparator = object: Comparator<Int> {
 @Test fun minWith() {
     assertEquals(Stream(1, 2, 3).minWith(intComparator), 1)
 }
+
+@Test fun associate() {
+    assertEquals(Stream(1, 2, 3).associate { it to it }, mapOf(1 to 1, 2 to 2, 3 to 3))
+}

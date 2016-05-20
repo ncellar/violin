@@ -163,6 +163,24 @@ fun <T: Any> Stream<T>.minWith(cmp: Comparator<T>): T?
     = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) <= 0) r else t }
 
 /**
+ * Returns a mutable map that contains the entry returned by [ƒ] for each item in the stream.
+ * The items are inserted in stream order, so the latest item which claims a key wins.
+ */
+fun <T: Any, K, V> Stream<T>.associateMutable(f: (T) -> Pair<K, V>): MutableMap<K, V> {
+    val out = mutableMapOf<K, V>()
+    map(f).each { out.put(it.first, it.second) }
+    return out
+}
+
+/**
+ * Returns a mutable map that contains the entry returned by [ƒ] for each item in the stream.
+ * The items are inserted in stream order, so the latest item which claims a key wins.
+ */
+fun <T: Any, K, V> Stream<T>.associate(f: (T) -> Pair<K, V>): Map<K, V>
+    = associateMutable(f)
+
+
+/**
  * Creates a string from all the items separated using [separator] and using the given [prefix] and
  * [postfix] if supplied. If you specify a non-negative value of [limit], only the first [limit]
  * items will be appended, followed by the [truncated] string (which defaults to "...").
