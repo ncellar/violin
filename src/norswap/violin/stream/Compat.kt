@@ -21,7 +21,13 @@ fun <T: Any> java.util.stream.Stream<T>.stream(): Stream<T> {
 }
 
 /**
- * Converts a kotlin sequence into a stream.
+ * Returns a stream consisting of the items of the iterable.
+ */
+fun <T: Any> Iterable<T>.stream(): Stream<T>
+    = iterator().stream()
+
+/**
+ * Returns a stream consisting of the items of the sequence.
  */
 fun <T: Any> Sequence<T>.stream(): Stream<T>
     = iterator().stream()
@@ -31,12 +37,18 @@ fun <T: Any> Sequence<T>.stream(): Stream<T>
 /**
  * Converts an iterable into a streamable.
  */
-fun <T: Any> Iterable<T>.streamable(): Streamable<T>
-    = object: Streamable<T> {
-        override fun stream() = this@streamable.iterator().stream()
-    }
+fun <T: Any> Iterable<T>.streamable() = object: Streamable<T> {
+    override fun stream() = this@streamable.iterator().stream()
+}
 
-/// Stream from standard types ---------------------------------------------------------------------
+/**
+ * Converts a kotlin sequence into a streamable.
+ */
+fun <T: Any> Sequence<T>.streamable() = object: Streamable<T> {
+    override fun stream() = this@streamable.iterator().stream()
+}
+
+/// Stream from Collections ------------------------------------------------------------------------
 
 /**
  * Returns a stream consisting of the items of the array.
@@ -77,12 +89,6 @@ fun <T: Any> Array<out T?>.pureReverseStream(): Stream<T> {
         item
     }
 }
-
-/**
- * Returns a stream consisting of the items of the iterable.
- */
-fun <T: Any> Iterable<T>.stream(): Stream<T>
-    = iterator().stream()
 
 /**
  * Returns a stream consisting of the items of the list, in reverse order.
