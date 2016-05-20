@@ -17,6 +17,15 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
         override fun next() = link?.item.after { link = link?.next }
     }
 
+    /**
+     * Returns a stream of the links composing this linked list.
+     */
+    fun linkStream() = object: PeekStream<Link<T>> {
+        var link: Link<@UnsafeVariance T>? = this@Link
+        override fun peek() = link
+        override fun next() = link.after { link = link?.next }
+    }
+
     override public fun clone(): Link<T> = this
     override fun toString() = stream().joinToString()
 }
@@ -25,6 +34,11 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
  * Returns the stream of a potentially empty immutable linked list.
  */
 fun <T: Any> Link<T>?.stream() = this?.stream() ?: PeekStream.empty
+
+/**
+ * Returns the [linkStream] of a potentially empty immutable linked list.
+ */
+fun <T: Any> Link<T>?.linkStream() = this?.linkStream() ?: PeekStream.empty
 
 /**
  * Returns the iterator of a potentially empty immutable linked list.
@@ -47,6 +61,11 @@ class LinkList<T: Any> (
 ): Stack<T>, Cloneable
 {
     override fun stream(): PeekStream<T> = link.stream()
+
+    /**
+     * Returns a stream of the links composing this linked list.
+     */
+    fun linkStream(): PeekStream<Link<T>> = link.linkStream()
 
     override val empty: Boolean
         get() = size == 0
