@@ -9,13 +9,13 @@ import java.util.stream.Stream as JStream
  * Be cautious: this assumes the iterator is finite and so returns a [Stream].
  * If not so, assign the result to a [Stream] to avoid errors.
  */
-fun <T: Any> Iterator<T>.tune(): Stream<T>
+fun <T: Any> Iterator<T>.stream(): Stream<T>
     = Stream { if (hasNext()) next() else null }
 
 /**
  * Converts a java stream into a violin stream.
  */
-fun <T: Any> java.util.stream.Stream<T>.tune(): Stream<T> {
+fun <T: Any> java.util.stream.Stream<T>.stream(): Stream<T> {
     val iterator = iterator()
     return Stream { if (iterator.hasNext()) iterator.next() else null }
 }
@@ -23,8 +23,8 @@ fun <T: Any> java.util.stream.Stream<T>.tune(): Stream<T> {
 /**
  * Converts a kotlin sequence into a stream.
  */
-fun <T: Any> Sequence<T>.tune(): Stream<T>
-    = iterator().tune()
+fun <T: Any> Sequence<T>.stream(): Stream<T>
+    = iterator().stream()
 
 /// Conversion to Streamable -----------------------------------------------------------------------
 
@@ -34,9 +34,9 @@ fun <T: Any> Sequence<T>.tune(): Stream<T>
  * Be cautious: this assumes the iterable yields finite iterators and so returns a [Streamable].
  * If not so, assign the result to a [Streamable] to avoid errors.
  */
-fun <T: Any> Iterable<T>.tune(): Streamable<T>
+fun <T: Any> Iterable<T>.streamable(): Streamable<T>
     = object: Streamable<T> {
-        override fun stream() = this@tune.iterator().tune()
+        override fun stream() = this@streamable.iterator().stream()
     }
 
 /// Stream from standard types ---------------------------------------------------------------------
@@ -85,7 +85,7 @@ fun <T: Any> Array<out T?>.pureReverseStream(): Stream<T> {
  * Returns a stream consisting of the items of the iterable.
  */
 fun <T: Any> Iterable<T>.stream(): Stream<T>
-    = iterator().tune()
+    = iterator().stream()
 
 /**
  * Returns a stream consisting of the items of the list, in reverse order.

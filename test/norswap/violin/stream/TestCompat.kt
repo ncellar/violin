@@ -2,16 +2,16 @@ package norswap.violin.stream
 import org.testng.Assert
 import org.testng.annotations.Test
 
-@Test fun Iterator_tune() {
-    testStream { it.iterator().tune() }
+@Test fun Iterator_stream() {
+    testStream { it.iterator().stream() }
 }
 
-@Test fun Stream_tune() {
-    testStream { java.util.stream.Stream.of(*it).tune() }
+@Test fun Stream_stream() {
+    testStream { java.util.stream.Stream.of(*it).stream() }
 }
 
-@Test fun Sequence_tune() {
-    testStream { sequenceOf(*it).tune() }
+@Test fun Sequence_stream() {
+    testStream { sequenceOf(*it).stream() }
 }
 
 @Test fun Array_stream() {
