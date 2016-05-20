@@ -1,4 +1,6 @@
 package norswap.violin.stream
+import norswap.violin.LinkList
+import norswap.violin.Stack
 import java.util.Comparator
 
 /**
@@ -23,6 +25,23 @@ fun <T: Any> Stream<T>.mutableList(): MutableList<T> {
  */
 fun <T: Any> Stream<T>.list(): List<T>
     = mutableList()
+
+/**
+ * Pulls all the items of the stream into a link list (the first item of the stream will
+ * be the last item of the list) and returns it.
+ */
+fun <T: Any> Stream<T>.linkList(): LinkList<T> {
+    val list = LinkList<T>()
+    each { list.push(it) }
+    return list
+}
+
+/**
+ * Pulls all the items of the stream into a stack (the first item of the stream will
+ * be the last item of the list) and returns it.
+ */
+fun <T: Any> Stream<T>.stack(): Stack<T>
+    = linkList()
 
 /**
  * Pulls all the items of the stream into an array and returns it.
