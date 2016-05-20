@@ -32,17 +32,17 @@ operator fun <T: Any> Link<T>?.iterator() = this?.iterator() ?: emptyList<T>().i
  */
 class LinkList<T: Any> (
     var link: Link<T>? = null,
-    var size: Int = link.iterator().asSequence().count()
-): Streamable<T>, Cloneable
+    override var size: Int = link.iterator().asSequence().count()
+): Stack<T>, Cloneable
 {
     override fun stream(): PeekStream<T> = link.stream()
 
-    val empty: Boolean
+    override val empty: Boolean
         get() = size == 0
 
-    fun push(item: T) { link = Link(item, link) }
-    fun peek(): T? = link ?. item
-    fun pop(): T? = link ?. item ?. after { link = link?.next }
+    override fun push(item: T) { link = Link(item, link) }
+    override fun peek(): T? = link ?. item
+    override fun pop(): T? = link ?. item ?. after { link = link?.next }
 
     override public fun clone(): LinkList<T> = LinkList(link, size)
 }
