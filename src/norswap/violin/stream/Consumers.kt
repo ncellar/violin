@@ -182,7 +182,7 @@ fun <T: Any> Stream<T>.minWith(cmp: Comparator<T>): T?
     = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) <= 0) r else t }
 
 /**
- * Returns a mutable map that contains the entry returned by [ƒ] for each item in the stream.
+ * Returns a mutable map that contains the entry returned by [f] for each item in the stream.
  * The items are inserted in stream order, so the latest item which claims a key wins.
  */
 fun <T: Any, K, V> Stream<T>.associateMutable(f: (T) -> Pair<K, V>): MutableMap<K, V> {
@@ -192,7 +192,7 @@ fun <T: Any, K, V> Stream<T>.associateMutable(f: (T) -> Pair<K, V>): MutableMap<
 }
 
 /**
- * Returns a mutable map that contains the entry returned by [ƒ] for each item in the stream.
+ * Returns a mutable map that contains the entry returned by [f] for each item in the stream.
  * The items are inserted in stream order, so the latest item which claims a key wins.
  */
 fun <T: Any, K, V> Stream<T>.associate(f: (T) -> Pair<K, V>): Map<K, V>
