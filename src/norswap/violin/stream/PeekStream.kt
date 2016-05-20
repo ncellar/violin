@@ -33,6 +33,11 @@ interface PeekStream <out T: Any>: Stream<T>
          */
         operator fun <U: Any> invoke(vararg items: U)
             = invoke(Stream(*items))
+
+        /**
+         * An empty peek stream, assignable to PeekStream<T> for any T.
+         */
+        val empty = PeekStream<Nothing> { null }
     }
 
     /**
