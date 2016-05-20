@@ -1,7 +1,4 @@
 package norswap.violin.stream
-import norswap.violin.utils.after
-import java.util.NoSuchElementException
-import java.util.stream.StreamSupport
 import java.util.stream.Stream as JStream
 
 /// Conversion to Stream ---------------------------------------------------------------------------
