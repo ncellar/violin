@@ -2,6 +2,7 @@ package norswap.violin
 import norswap.violin.stream.PeekStream
 import norswap.violin.stream.Streamable
 import norswap.violin.stream.count
+import norswap.violin.stream.joinToString
 import norswap.violin.stream.stream
 import norswap.violin.utils.after
 
@@ -17,6 +18,7 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
     }
 
     override public fun clone(): Link<T> = this
+    override fun toString() = stream().joinToString()
 }
 
 /**
@@ -29,8 +31,15 @@ fun <T: Any> Link<T>?.stream() = this?.stream() ?: PeekStream.empty
  */
 operator fun <T: Any> Link<T>?.iterator() = this?.iterator() ?: emptyList<T>().iterator()
 
+fun <T: Any> Link<T>?.toString() = stream().joinToString()
+
 /**
  * A mutable linked list implemented as a pointer to an immutable linked list ([Link]) and a size.
+ *
+ * [size] must be the real size of [link].
+ *
+ * The [equals] method is shallow: two link lists are equal if their [size] are the same and
+ * their [link] are reference-equals.
  */
 class LinkList<T: Any> (
     var link: Link<T>? = null,
@@ -47,4 +56,16 @@ class LinkList<T: Any> (
     override fun pop(): T? = link ?. item ?. after { link = link?.next }
 
     override public fun clone(): LinkList<T> = LinkList(link, size)
+    override fun toString() = stream().toString()
+
+    /**
+     * Shallow comparison: two link lists are equal if their [size] are the same and
+     * their [link] are reference-equals.
+     */
+    override fun equals(other: Any?) =
+        (other is LinkList<*>)
+        && other.size === this.size
+        && other.link === this.link
+
+    override fun hashCode() = (link?.hashCode() ?: 0) * 31 + size
 }
