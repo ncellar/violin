@@ -22,6 +22,12 @@ interface Streamable <out T: Any>
     }
 
     /**
+     * Returns an iterator over [stream]. This method is required in order to be able
+     * to use [Streamable] instances in Kotlin for loops.
+     */
+    operator fun iterator(): Iterator<T> = stream().iterator()
+
+    /**
      * Returns a sequence backed by the streamable.
      */
     fun sequence() = object: Sequence<T> {
