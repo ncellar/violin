@@ -30,9 +30,6 @@ fun <T: Any> Sequence<T>.stream(): Stream<T>
 
 /**
  * Converts an iterable into a streamable.
- *
- * Be cautious: this assumes the iterable yields finite iterators and so returns a [Streamable].
- * If not so, assign the result to a [Streamable] to avoid errors.
  */
 fun <T: Any> Iterable<T>.streamable(): Streamable<T>
     = object: Streamable<T> {
