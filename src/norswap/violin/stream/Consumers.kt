@@ -27,6 +27,21 @@ fun <T: Any> Stream<T>.list(): List<T>
     = mutableList()
 
 /**
+ * Pulls all the items of the stream into a mutable set and returns it.
+ */
+fun <T: Any> Stream<T>.mutableSet(): MutableSet<T> {
+    val set = mutableSetOf<T>()
+    each { set.add(it) }
+    return set
+}
+
+/**
+ * Pulls all the items of the stream into a set and returns it.
+ */
+fun <T: Any> Stream<T>.set(): Set<T>
+    = mutableSet()
+
+/**
  * Pulls all the items of the stream into a link list (the first item of the stream will
  * be the last item of the list) and returns it.
  */
