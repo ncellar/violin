@@ -24,3 +24,12 @@ operator fun StringBuilder.plusAssign(s: String) { append(s) }
  * Shorthand for [StringBuilder.append].
  */
 operator fun StringBuilder.plusAssign(o: Any?) { append(o) }
+
+/**
+ * Casts the receiver to [T].
+ *
+ * This is more useful than regular casts because it enables casts to non-denotable types
+ * through type inference.
+ */
+@Suppress("UNCHECKED_CAST")
+fun <T> Any?.cast() = this as T
