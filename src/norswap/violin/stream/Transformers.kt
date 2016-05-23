@@ -132,3 +132,13 @@ fun <T: Any, U: Any> Stream<T>.ziplong(other: Stream<U>): Stream<Pair<T?, U?>> =
         val b = other.next()
         if (a != null || b != null) Pair(a, b) else null
     }
+
+/**
+ * Return a stream that is the concatenation of this stream with [other].
+ */
+infix fun <T: Any> Stream<T>.then(other: Stream<T>): Stream<T> {
+    var stream = this
+    return Stream {
+        stream.next() ?: if (stream === other) null else other.next().after { stream = other }
+    }
+}
