@@ -33,3 +33,12 @@ operator fun StringBuilder.plusAssign(o: Any?) { append(o) }
  */
 @Suppress("UNCHECKED_CAST")
 fun <T> Any?.cast() = this as T
+
+/**
+ * Like [substring] but allows [start] and [end] to be negative numbers, which count down from the
+ * end of the string. i.e., a negative [start] is equivalent to `this.length - start`.
+ */
+operator fun CharSequence.get(start: Int, end: Int = length) =
+    substring(
+        if (start >= 0) start else length - start,
+        if (end >= 0) end else length - end)
