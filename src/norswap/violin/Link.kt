@@ -73,7 +73,7 @@ class LinkList<T: Any> (
     override fun pop(): T? = link ?. item ?. after { link = link?.next }
 
     override public fun clone(): LinkList<T> = LinkList(link, size)
-    override fun toString() = stream().toString()
+    override fun toString() = stream().joinToString()
 
     /**
      * Shallow comparison: two link lists are equal if their [size] are the same and
