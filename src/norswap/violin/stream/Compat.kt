@@ -1,4 +1,5 @@
 package norswap.violin.stream
+import java.util.Stack
 import java.util.stream.Stream as JStream
 
 /// Conversion to Stream ---------------------------------------------------------------------------
@@ -31,6 +32,15 @@ fun <T: Any> Iterable<T>.stream(): Stream<T>
  */
 fun <T: Any> Sequence<T>.stream(): Stream<T>
     = iterator().stream()
+
+/**
+ * Returns a stream consisting of the items of the stack.
+ * Consuming items from the stream (with [next]) pops them from the stack.
+ */
+fun <T: Any> Stack<T>.stream() = object: PeekStream<T> {
+    override fun peek() = this@stream.peek()
+    override fun next() = this@stream.pop()
+}
 
 /// Conversion to Streamable -----------------------------------------------------------------------
 
