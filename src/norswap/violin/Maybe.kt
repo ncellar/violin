@@ -48,3 +48,9 @@ val None = Maybe.None
  */
 @Suppress("NOTHING_TO_INLINE")
 inline fun <T: Any> Some(value: T) = Maybe.Some(value)
+
+/**
+ * Creates a [Maybe] instance from a nullable object.
+ */
+fun <T: Any> Maybe(item: T?): Maybe<T> =
+    if (item != null) Some(item) else None
