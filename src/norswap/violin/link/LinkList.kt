@@ -17,6 +17,13 @@ class LinkList<T: Any> (
     override var size: Int = link.iterator().stream().count())
 : Stack<T>, Cloneable
 {
+    /**
+     * Builds a mutable linked list from [items].
+     */
+    constructor (vararg items: T) : this(null, 0) {
+        items.reverseStream().each { push(it) }
+    }
+
     override fun stream(): PeekStream<T> = link.stream()
 
     /**

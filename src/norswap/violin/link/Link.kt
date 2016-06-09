@@ -27,6 +27,12 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
 }
 
 /**
+ * Builds an immutable singly linked list from [items].
+ */
+fun <T: Any> Link(vararg items: T): Link<T>? =
+    items.foldRight<T, Link<T>?>(null) { it, r -> Link(it, r) }
+
+/**
  * Returns the stream of a potentially empty immutable linked list.
  */
 fun <T: Any> Link<T>?.stream() = this?.stream() ?: PeekStream.empty
