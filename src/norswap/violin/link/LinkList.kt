@@ -27,9 +27,9 @@ class LinkList<T: Any> (
     override val empty: Boolean
         get() = size == 0
 
-    override fun push(item: T) { link = Link(item, link) }
+    override fun push(item: T) { link = Link(item, link) ; ++ size }
     override fun peek(): T? = link ?. item
-    override fun pop(): T? = link ?. item ?. after { link = link?.next }
+    override fun pop(): T? = link ?. item ?. after { link = link?.next ; -- size }
 
     override public fun clone(): LinkList<T> = LinkList(link, size)
     override fun toString() = stream().joinToString()
