@@ -3,7 +3,7 @@ import norswap.violin.stream.*
 import norswap.violin.utils.after
 
 /**
- * Simple immutable linked list data structure. Use null as nil.
+ * Immutable singly linked list data structure. Use null as nil.
  */
 class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneable
 {

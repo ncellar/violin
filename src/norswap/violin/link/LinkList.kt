@@ -4,7 +4,8 @@ import norswap.violin.stream.*
 import norswap.violin.utils.after
 
 /**
- * A mutable linked list implemented as a pointer to an immutable linked list ([Link]) and a size.
+ * A mutable singly linked list implemented as a pointer to an immutable linked list ([Link])
+ * and a size.
  *
  * [size] must be the real size of [link].
  *
