@@ -1,4 +1,3 @@
-@file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.link
 import norswap.violin.Stack
 import norswap.violin.stream.*
@@ -44,6 +43,8 @@ fun <T: Any> Link<T>?.linkStream() = this?.linkStream() ?: PeekStream.empty
 operator fun <T: Any> Link<T>?.iterator() = this?.iterator() ?: emptyList<T>().iterator()
 
 fun <T: Any> Link<T>?.toString() = stream().joinToString()
+
+
 
 /**
  * A mutable linked list implemented as a pointer to an immutable linked list ([Link]) and a size.
