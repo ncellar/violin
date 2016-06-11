@@ -112,6 +112,26 @@ fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
 }
 
 /**
+ * Returns a stream consisting of the distinct items of this stream.
+ *
+ * Note that this streams holds on to a set of all items seen in the stream!
+ */
+fun <T: Any> Stream<T>.distinct(): Stream<T> {
+    val set = mutableSetOf<T>()
+    return filter { set.add(it) }
+}
+
+/**
+ * Returns a stream consisting of items whose selector (as returned by [selector]) are distinct.
+ *
+ * Note that this streams holds on to a set of all selectors seen in the stream!
+ */
+inline fun <T: Any, K> Stream<T>.distinctBy(crossinline selector: (T) -> K): Stream<T> {
+    val set = mutableSetOf<K>()
+    return filter { set.add(selector(it)) }
+}
+
+/**
  * Returns a stream consisting of pairs made up by one item of this stream and one item of
  * [other]. The stream only runs as far as the shortest of the two streams.
  */
