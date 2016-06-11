@@ -65,6 +65,13 @@ inline fun <reified T: Any> Stream<T>.array(): Array<T>
     = mutableList().toTypedArray()
 
 /**
+ * Pulls all the items of the stream into an array (with type parameter Any) and returns it.
+ */
+@Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+fun Stream<Any>.anyArray(): Array<Any>
+    = (mutableList() as java.util.List<*>).toArray()
+
+/**
  * Folds [reduce] over the items of the stream, from left to right, using [first] as initial
  * item on the left.
  *
