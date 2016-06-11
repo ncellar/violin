@@ -89,8 +89,8 @@ inline fun <T: Any, R> Stream<T>.foldl(first: R, reduce: (R, T) -> R): R {
  *
  * e.g. `Stream(1, 2, 3).foldr(0) { r, t -> r + t }` == `(((0 + 3) + 2) + 1)`
  */
-inline fun <reified T: Any, R> Stream<T>.foldr(last: R, reduce: (R, T) -> R): R
-    = array().reverseStream().foldl(last, reduce)
+inline fun <T: Any, R> Stream<T>.foldr(last: R, reduce: (R, T) -> R): R
+    = list().reverseStream().foldl(last, reduce)
 
 /**
  * Folds [f] over the items of the stream, from left to right.
