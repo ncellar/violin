@@ -33,7 +33,7 @@ sealed class Maybe<out T: Any>
         && value == other.value
 
     override fun hashCode() =
-        if (this is Some) (value ?. hashCode() ?: 0) * 31
+        if (this is Some) value.hashCode() * 31
         else super.hashCode()
 }
 
