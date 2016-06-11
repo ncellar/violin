@@ -46,4 +46,9 @@ interface PeekStream <out T: Any>: Stream<T>
      * The next call to [peek] or [next] must return the same value.
      */
     fun peek(): T?
+
+    /**
+     * Is this stream empty?
+     */
+    fun isEmpty() = peek() == null
 }
