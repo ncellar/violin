@@ -16,6 +16,12 @@ inline infix fun <T> T.after(f: (T) -> Unit): T {
 }
 
 /**
+ * Analogous to [arrayOf], but doesn't require reification.
+ */
+@Suppress("UNCHECKED_CAST")
+fun <T: Any> array(vararg items: T) = items as Array<T>
+
+/**
  * Shorthand for [StringBuilder.append].
  */
 operator fun StringBuilder.plusAssign(s: String) { append(s) }
