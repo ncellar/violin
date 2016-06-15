@@ -33,6 +33,18 @@ inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T
     }
 
 /**
+ * Returns a stream equivalent to `this.filter { f(it) != null }.map { f(it) }`, but which
+ * evaluates [f] only once per element.
+ */
+fun <T: Any, R: Any> Stream<T>.filterMap(f: (T) -> R?): Stream<R> =
+    Stream {
+        var result: R? = null
+        var next = next()
+        while (next != null && (f(next) after { result = it }) == null) next = next()
+        result
+    }
+
+/**
  * Returns a stream consisting of the items of this stream, paired with its index (starting
  * at 0 for the next item of this stream).
  */
