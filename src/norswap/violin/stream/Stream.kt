@@ -70,3 +70,18 @@ interface Stream <out T: Any>
         java.lang.Iterable<@UnsafeVariance T> { this@Stream.iterator() }.spliterator(),
         false)
 }
+
+/**
+ * Returns the stream consisting of the receiver and the transitive closure of function [f] over
+ * this receiver. Each item in the sequence (excepted the first) is the result of applying [f] on
+ * the previous item.
+ */
+fun <T: Any> T.transitive(f: (T) -> T?): Stream<T> {
+    var first = true
+    var last: T? = this
+    return Stream {
+        if (first) last after { first = false }
+        else if (last == null) null
+        else f(last as T) after { last = it }
+    }
+}
