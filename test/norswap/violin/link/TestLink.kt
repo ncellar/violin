@@ -1,4 +1,5 @@
 package norswap.violin.link
+import norswap.violin.stream.each
 import org.testng.annotations.Test
 import org.testng.Assert.*
 
@@ -16,13 +17,12 @@ import org.testng.Assert.*
     for (i in link)
         assertEquals(i, ++j)
     j = 0
-    for (i in link.stream())
-        assertEquals(i, ++j)
+    link.stream().each { assertEquals(it, ++j) }
+
 }
 
 @Test fun linkStream() {
     val link = Link(1, 2, 3)
-    var j = 0
-    for (l in link.linkStream())
-        assertEquals(l.item, ++j)
+    var i = 0
+    link.linkStream().each { assertEquals(it.item, ++i) }
 }

@@ -1,4 +1,5 @@
 package norswap.violin.link
+import norswap.violin.stream.each
 import org.testng.annotations.Test
 import org.testng.Assert.*
 
@@ -16,8 +17,8 @@ import org.testng.Assert.*
     for (i in list)
         assertEquals(i, ++j)
     j = 0
-    for (i in list.stream())
-        assertEquals(i, ++j)
+    list.stream().each { assertEquals(it, ++j) }
+
 }
 
 @Test fun linkListSize() {
