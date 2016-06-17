@@ -1,5 +1,4 @@
-@file:Suppress("PackageDirectoryMismatch")
-package norswap.violin.maybe
+package norswap.violin
 
 /**
  * Represent a possible value ([Some]) or an absence of value ([None]).
