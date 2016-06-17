@@ -19,6 +19,9 @@ class LinkList<T: Any> (
 {
     /**
      * Builds a mutable linked list from [items].
+     *
+     * The items are inserted right-to-left (so the last item is in the innermost link, and
+     * iteration order is order in which the items appear).
      */
     constructor (vararg items: T) : this(null, 0) {
         items.reverseStream().each { push(it) }

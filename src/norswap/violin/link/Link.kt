@@ -10,7 +10,7 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
     override fun stream() = object: PeekStream<T> {
         var link: Link<@UnsafeVariance T>? = this@Link
         override fun peek() = link?.item
-        override fun next() = link?.item.after { link = link?.next }
+        override fun next() = link?.item after { link = link?.next }
     }
 
     /**
@@ -19,7 +19,7 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
     fun linkStream() = object: PeekStream<Link<T>> {
         var link: Link<@UnsafeVariance T>? = this@Link
         override fun peek() = link
-        override fun next() = link.after { link = link?.next }
+        override fun next() = link after { link = link?.next }
     }
 
     override public fun clone(): Link<T> = this
@@ -28,6 +28,9 @@ class Link<out T: Any> (val item: T, val next: Link<T>?): Streamable<T>, Cloneab
 
 /**
  * Builds an immutable singly linked list from [items].
+ *
+ * The items are inserted right-to-left (so the last item is in the innermost link, and
+ * iteration order is order in which the items appear).
  */
 fun <T: Any> Link(vararg items: T): Link<T>? =
     items.foldRight<T, Link<T>?>(null) { it, r -> Link(it, r) }
