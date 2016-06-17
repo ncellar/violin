@@ -1,8 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Violin" verbose="1">
-    <test name="Streams">
+    <test name="Violin">
         <packages>
+            <package name="norswap.violin" />
+            <package name="norswap.violin.link" />
             <package name="norswap.violin.stream" />
         </packages>
     </test>
