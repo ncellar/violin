@@ -6,6 +6,7 @@
             <package name="norswap.violin" />
             <package name="norswap.violin.link" />
             <package name="norswap.violin.stream" />
+            <package name="norswap.violin.utils" />
         </packages>
     </test>
 </suite>
