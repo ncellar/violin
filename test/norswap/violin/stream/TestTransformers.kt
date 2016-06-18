@@ -74,3 +74,20 @@ import org.testng.Assert.*
         listOf(Pair(1, 2), Pair(2, 4), Pair(null, 6)))
 
 }
+
+@Test fun concat() {
+    var stream = Stream(1, 2, 3) then Stream(4, 5, 6)
+    var i = 0
+    stream.each { assertEquals(it, ++i) }
+    assertEquals(i, 6)
+    stream = Stream<Int>() then Stream(1, 2, 3)
+    i = 0
+    stream.each { assertEquals(it, ++i) }
+    assertEquals(i, 3)
+    stream = Stream(1, 2, 3) then Stream<Int>()
+    i = 0
+    stream.each { assertEquals(it, ++i) }
+    assertEquals(i, 3)
+    stream = Stream<Int>() then Stream<Int>()
+    assertNull(stream.next())
+}
