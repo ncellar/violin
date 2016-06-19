@@ -9,4 +9,7 @@ interface Stack<T: Any>: Streamable<T> {
     fun push(item: T)
     fun peek(): T?
     fun pop(): T?
+    fun truncate(target: Int) {
+        while (size > target) pop()
+    }
 }
