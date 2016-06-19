@@ -120,3 +120,9 @@ val intComparator = object: Comparator<Int> {
     val set = Stream(1, 2, 3).set()
     assertEquals(set, setOf(1, 2, 3))
 }
+
+@Test fun joinToString() {
+    val str = Stream(1, 2, 3)
+        .joinToString(prefix="[", postfix= "]", limit=2) { (it * 2).toString() }
+    assertEquals(str, "[2, 4, ...]")
+}
