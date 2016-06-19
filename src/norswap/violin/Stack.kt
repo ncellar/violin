@@ -12,4 +12,12 @@ interface Stack<T: Any>: Streamable<T> {
     fun truncate(target: Int) {
         while (size > target) pop()
     }
+    /**
+     * Returns a stream consisting of the items of the stack.
+     * Consuming items from the stream (with [next]) pops them from the stack.
+     */
+    fun poppingStream() = object: PeekStream<T> {
+        override fun peek() = this@Stack.peek()
+        override fun next() = this@Stack.pop()
+    }
 }

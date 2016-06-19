@@ -33,15 +33,6 @@ fun <T: Any> Iterable<T>.stream(): Stream<T>
 fun <T: Any> Sequence<T>.stream(): Stream<T>
     = iterator().stream()
 
-/**
- * Returns a stream consisting of the items of the stack.
- * Consuming items from the stream (with [next]) pops them from the stack.
- */
-fun <T: Any> Stack<T>.poppingStream() = object: PeekStream<T> {
-    override fun peek() = this@poppingStream.peek()
-    override fun next() = this@poppingStream.pop()
-}
-
 /// Conversion to Streamable -----------------------------------------------------------------------
 
 /**
