@@ -22,7 +22,7 @@ interface Streamable <out T: Any>
     }
 
     /**
-     * Returns an iterator over [stream]. This method is required in order to be able
+     * Returns an iterator over [poppingStream]. This method is required in order to be able
      * to use [Streamable] instances in Kotlin for loops.
      */
     operator fun iterator(): Iterator<T> = stream().iterator()
