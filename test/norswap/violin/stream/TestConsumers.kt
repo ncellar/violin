@@ -126,3 +126,15 @@ val intComparator = object: Comparator<Int> {
         .joinToString(prefix="[", postfix= "]", limit=2) { (it * 2).toString() }
     assertEquals(str, "[2, 4, ...]")
 }
+
+@Test fun groupBy() {
+    val map = Stream(2, 3, 4, 5, 6, 7).groupBy { it / 2 }
+    val expect = mapOf(1 to listOf(2, 3), 2 to listOf(4, 5), 3 to listOf(6, 7))
+    assertEquals(map, expect)
+}
+
+@Test fun partition() {
+    val pair = Stream(1, 2, 3, 4).partition { it % 2 == 0 }
+    val expect = Pair(listOf(2, 4), listOf(1, 3))
+    assertEquals(pair, expect)
+}
