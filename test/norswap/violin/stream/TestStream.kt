@@ -33,3 +33,8 @@ import java.util.NoSuchElementException
     var i = 0
     stream.forEach { assertEquals(it, ++i) }
 }
+
+@Test fun transitive() {
+    val list = 1.transitive { it + 1 }.limit(4).list()
+    assertEquals(list, listOf(1, 2, 3, 4))
+}

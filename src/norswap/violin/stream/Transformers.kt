@@ -28,7 +28,7 @@ inline fun <T: Any> Stream<T>.after(crossinline f: (T) -> Unit): Stream<T>
 inline fun <T: Any> Stream<T>.filter(crossinline keep: (T) -> Boolean): Stream<T> =
     Stream {
         var next: T?
-        do { next = next() } while (next?.let{ !keep(it) }?:false)
+        do { next = next() } while (next ?. let{ !keep(it) } ?: false)
         next
     }
 
@@ -78,17 +78,21 @@ inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Str
  * encountered. The returned stream does not yield the matching item.
  */
 inline fun <T: Any> Stream<T>.upTo(crossinline stop: (T) -> Boolean): Stream<T> {
-    var ongoing = true
-    return filter { ongoing && expr { ongoing = !stop(it) ; ongoing } }
-}
+    var stopped = false
+    return Stream {
+        if (stopped) null
+        else next().let {
+            stopped = it == null || stop(it)
+            if (stopped) null else it
+}   }   }
 
 /**
  * Returns a stream consisting of the items of this stream, until an item matching [stop] is
  * encountered. The matching item will be the last item of the returned stream.
  */
 inline fun <T: Any> Stream<T>.upThrough(crossinline stop: (T) -> Boolean): Stream<T> {
-    var ongoing = true
-    return filter { ongoing && expr { ongoing = !stop(it) ; true } }
+    var stopped = false
+    return Stream { if (stopped) null else next() after { stopped = it == null || stop(it) } }
 }
 
 /**
@@ -120,7 +124,7 @@ inline fun <T: Any> Stream<T>.takeWhile(crossinline keep: (T) -> Boolean): Strea
  */
 fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
     var i = 0
-    return takeWhile { (i < n) after { if (it) ++i } }
+    return upTo { (i >= n) after { if (!it) ++i } }
 }
 
 /**
