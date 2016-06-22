@@ -91,3 +91,18 @@ import org.testng.Assert.*
     stream = Stream<Int>() then Stream<Int>()
     assertNull(stream.next())
 }
+
+@Test fun distinct() {
+    val list = Stream(1, 1, 2, 3, 1, 2, 3, 3, 2).distinct().list()
+    assertEquals(list, listOf(1, 2, 3))
+}
+
+@Test fun distinctBy() {
+    val list = Stream(2, 3, 2, 5, 4, 6, 4, 2).distinctBy { it / 2 }.list()
+    assertEquals(list, listOf(2, 5, 6))
+}
+
+@Test fun filterMap() {
+    val list = Stream(1, 2, 3, 4).filterMap { if (it % 2 == 0) it / 2 else null }.list()
+    assertEquals(list, listOf(1, 2))
+}
