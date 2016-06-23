@@ -34,9 +34,6 @@ class LinkList<T: Any> (
      */
     fun linkStream(): PeekStream<Link<T>> = link.linkStream()
 
-    override val empty: Boolean
-        get() = size == 0
-
     override fun push(item: T) { link = Link(item, link) ; ++ size }
     override fun peek(): T? = link ?. item
     override fun pop(): T? = link ?. item ?. after { link = link?.next ; -- size }

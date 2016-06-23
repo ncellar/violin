@@ -6,6 +6,7 @@ interface Stack<T: Any>: Streamable<T> {
     override fun stream(): PeekStream<T>
     val size: Int
     val empty: Boolean
+        get() = size == 0
     fun push(item: T)
     fun peek(): T?
     fun pop(): T?
