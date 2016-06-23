@@ -36,7 +36,7 @@ import java.util.Comparator
 }
 
 @Test fun reduceRight() {
-    assertEquals(Stream(1, 2, 3).reduceRight { a, b -> a * 10 + b }, 33)
+    assertEquals(Stream(1, 2, 3).reduceRight { a, b -> a * 10 + b }, 321)
     assertNull(Stream<Int>().reduceRight { a, b -> a + b })
 }
 
