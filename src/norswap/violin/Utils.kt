@@ -16,6 +16,12 @@ inline infix fun <T> T.after(f: (T) -> Unit): T {
 }
 
 /**
+ * Syntactic sugar for `if (this) then f() else null`.
+ */
+infix inline fun <T> Boolean.then (f: () -> T): T?
+    = if (this) f() else null
+
+/**
  * Analogous to [arrayOf], but doesn't require reification.
  */
 @Suppress("UNCHECKED_CAST")
