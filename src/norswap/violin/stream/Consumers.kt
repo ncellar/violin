@@ -105,7 +105,7 @@ inline fun <T: Any> Stream<T>.reduce(f: (T, T) -> T): T?
  *
  * e.g. `Stream(1, 2, 3).reduce { r, t -> r + t }` == `((3 + 2) + 1)`
  */
-inline fun <reified T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
+inline fun <T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
     = list().reverseStream().reduce { a, b -> f(a, b) }
 
 /**
