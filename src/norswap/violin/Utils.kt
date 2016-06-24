@@ -1,6 +1,9 @@
 @file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.utils
 
+import java.nio.file.Files
+import java.nio.file.Paths
+
 /**
  * Returns the result of [f].
  * The point of to allow statements in an expression context.
@@ -69,3 +72,11 @@ operator fun CharSequence.get(start: Int, end: Int = length): String {
     if (a > b) return ""
     return substring(a, b)
 }
+
+/**
+ * Reads a complete file and returns its contents as a string.
+ * @throws IOException see [Files.readAllBytes]
+ * @throws InvalidPathException see [Paths.get]
+ */
+fun readFile(file: String)
+    = String(Files.readAllBytes(Paths.get(file)))
