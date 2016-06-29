@@ -38,6 +38,13 @@ class LinkList<T: Any> (
     override fun peek(): T? = link ?. item
     override fun pop(): T? = link ?. item ?. after { link = link?.next ; -- size }
 
+    /**
+     * Returns a link list similar to this one, excluding its first element.
+     * If the list is empty, the result is another empty list.
+     */
+    fun tail(): LinkList<T>
+        = LinkList(link?.next, if (size > 0) size - 1 else 0)
+
     override public fun clone(): LinkList<T> = LinkList(link, size)
     override fun toString() = stream().joinToString()
 
