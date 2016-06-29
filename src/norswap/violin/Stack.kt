@@ -10,9 +10,15 @@ interface Stack<T: Any>: Streamable<T> {
     fun push(item: T)
     fun peek(): T?
     fun pop(): T?
+
+    /**
+     * Pop items from the stack until its size is [target].
+     * If `size > target`, does nothing.
+     */
     fun truncate(target: Int) {
         while (size > target) pop()
     }
+
     /**
      * Returns a stream consisting of the items of the stack.
      * Consuming items from the stream (with [next]) pops them from the stack.
