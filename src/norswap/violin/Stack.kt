@@ -1,6 +1,8 @@
 package norswap.violin
 import norswap.violin.stream.PeekStream
 import norswap.violin.stream.Streamable
+import norswap.violin.stream.last
+import norswap.violin.stream.limit
 
 interface Stack<T: Any>: Streamable<T> {
     override fun stream(): PeekStream<T>
@@ -10,6 +12,13 @@ interface Stack<T: Any>: Streamable<T> {
     fun push(item: T)
     fun peek(): T?
     fun pop(): T?
+
+    /**
+     * Return the item at the given depth. The item at depth 0 is the top of the stack.
+     */
+    fun at(depth: Int): T? =
+        if (size <= depth) null
+        else stream().limit(depth + 1).last()
 
     /**
      * Pop items from the stack until its size is [target].
