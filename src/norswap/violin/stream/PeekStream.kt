@@ -22,17 +22,23 @@ interface PeekStream <out T: Any>: Stream<T>
                       else next.after { next = null }
             }
 
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
         /**
          * Creates a [PeekStream] from an existing stream by caching the next item.
          */
         operator fun <U: Any> invoke(stream: Stream<U>)
             = invoke { stream.next() }
 
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
         /**
          * Creates a [PeekStream] from the given items.
          */
         operator fun <U: Any> invoke(vararg items: U)
-            = invoke(Stream(*items))
+            = invoke(items.stream())
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         /**
          * An empty peek stream, assignable to PeekStream<T> for any T.
@@ -40,12 +46,16 @@ interface PeekStream <out T: Any>: Stream<T>
         val empty = PeekStream<Nothing> { null }
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     /**
      * Peek at the next value (the value that [next] would return) without advancing the stream.
      *
      * The next call to [peek] or [next] must return the same value.
      */
     fun peek(): T?
+
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Is this stream empty?

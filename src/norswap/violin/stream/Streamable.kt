@@ -14,23 +14,15 @@ interface Streamable <out T: Any>
      */
     fun stream(): Stream<T>
 
-    /**
-     * Returns an iterable backed by the streamable.
-     */
-    fun iterable() = object: Iterable<T> {
-        override fun iterator() = this@Streamable.stream().iterator()
-    }
+    // ---------------------------------------------------------------------------------------------
 
     /**
-     * Returns an iterator over [poppingStream]. This method is required in order to be able
-     * to use [Streamable] instances in Kotlin for loops.
+     * Returns an iterator backed by a stream.
+     *
+     * This method is required in order to be able to use [Streamable] instances in Kotlin for
+     * loops. This is why it is not an extension method
+     * (to make for loops available without the need to import extension methods).
      */
-    operator fun iterator(): Iterator<T> = stream().iterator()
-
-    /**
-     * Returns a sequence backed by the streamable.
-     */
-    fun sequence() = object: Sequence<T> {
-        override fun iterator() = this@Streamable.stream().iterator()
-    }
+    operator fun iterator(): Iterator<T>
+        = stream().iterator()
 }
