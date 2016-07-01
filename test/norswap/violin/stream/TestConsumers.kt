@@ -45,17 +45,6 @@ import java.util.Comparator
     assertNull(Stream<Int>().last())
 }
 
-@Test fun first() {
-    assertEquals(Stream(1, 2, 3, 4).first { it % 2 == 0 }, 2)
-    assertNull(Stream(1, 2, 3, 4).first { it % 5 == 0 })
-    assertNull(Stream<Int>().first { true })
-}
-@Test fun lastPredicate() {
-    assertEquals(Stream(1, 2, 3, 4).last { it % 2 == 0 }, 4)
-    assertNull(Stream(1, 2, 3, 4).last { it % 5 == 0 })
-    assertNull(Stream<Int>().last { true })
-}
-
 @Test fun any() {
     assertTrue(Stream(1, 2, 3).any { it % 2 == 0 })
     assertFalse(Stream(1, 3, 5).any { it % 2 == 0 })
@@ -80,10 +69,6 @@ import java.util.Comparator
     assertNull(Stream<Int>().max())
 }
 
-@Test fun maxBy() {
-    assertEquals(Stream(1, 2, 3).maxBy { it }, 3)
-}
-
 val intComparator = object: Comparator<Int> {
     override fun compare(a: Int, b: Int) = a - b
 }
@@ -97,10 +82,6 @@ val intComparator = object: Comparator<Int> {
     assertEquals(Stream(1, 2, 3).min(), 1)
     assertEquals(Stream(3, 2, 1).min(), 1)
     assertNull(Stream<Int>().min())
-}
-
-@Test fun minBy() {
-    assertEquals(Stream(1, 2, 3).minBy { it }, 1)
 }
 
 @Test fun minWith() {

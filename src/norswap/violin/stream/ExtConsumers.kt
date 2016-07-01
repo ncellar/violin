@@ -42,27 +42,11 @@ fun <T: Any> Stream<T>.last(): T? {
 // -------------------------------------------------------------------------------------------------
 
 /**
- * Returns the first item of this stream that satisfies the given predicate, if any.
- */
-inline fun <T: Any> Stream<T>.first(crossinline p: (T) -> Boolean): T?
-    = filter(p).next()
-
-// -------------------------------------------------------------------------------------------------
-
-/**
- * Returns the last item of this stream that satisfies the given predicate, if any.
- */
-inline fun <T: Any> Stream<T>.last(crossinline p: (T) -> Boolean): T?
-    = filter(p).last()
-
-// -------------------------------------------------------------------------------------------------
-
-/**
  * Indicates whether any item of this stream matches the given predicate.
  * This consumes items in the stream up to and including the one matching the predicate.
  */
 inline fun <T: Any> Stream<T>.any(crossinline p: (T) -> Boolean): Boolean
-    = first(p) != null
+    = filter(p).next() != null
 
 // -------------------------------------------------------------------------------------------------
 
@@ -71,7 +55,7 @@ inline fun <T: Any> Stream<T>.any(crossinline p: (T) -> Boolean): Boolean
  * (true if the stream is empty).
  */
 inline fun <T: Any> Stream<T>.all(crossinline p: (T) -> Boolean): Boolean
-    = first { !p(it) } == null
+    = filter { !p(it) }.next() == null
 
 // -------------------------------------------------------------------------------------------------
 
@@ -83,14 +67,6 @@ fun <T: Any> Stream<T>.count(): Int {
     each { ++count }
     return count
 }
-
-// -------------------------------------------------------------------------------------------------
-
-/**
- * Returns the number of items equal to [e] in the stream.
- */
-fun <T: Any> Stream<T>.count(e: Any?): Int
-    = filter { it == e }.count()
 
 /// [2] Create Data Structures /////////////////////////////////////////////////////////////////////
 
@@ -216,29 +192,29 @@ inline fun <T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
 /// [4] Extrema ////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * Return the maximum item of the stream according to [cmp] (same contract as [Comparator.compare]).
+ * If two items compare identical, the earliest will be preferred.
+ */
+inline fun <T: Any> Stream<T>.maxWith(cmp: (T, T) -> Int): T?
+    = reduce { r, t -> if (cmp(r, t) >= 0) r else t }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Return the minimum item of the stream according to [cmp] (same contract as [Comparator.compare]).
+ * If two items compare identical, the earliest will be preferred.
+ */
+inline fun <T: Any> Stream<T>.minWith(cmp: (T, T) -> Int): T?
+    = reduce { r, t -> if (cmp(r, t) <= 0) r else t }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
  * Return the maximum item of the stream.
  * If two items compare identical, the earliest will be preferred.
  */
 fun <T: Comparable<T>> Stream<T>.max(): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (r >= t) r else t }
-
-// -------------------------------------------------------------------------------------------------
-
-/**
- * Return the maximum item of the stream, determined by delegation to [f].
- * If two items compare identical, the earliest will be preferred.
- */
-inline fun <T: Any, U: Comparable<U>> Stream<T>.maxBy(f: (T) -> U): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (f(r) >= f(t)) r else t }
-
-// -------------------------------------------------------------------------------------------------
-
-/**
- * Return the maximum item of the stream, determined by delegation to [cmp].
- * If two items compare identical, the earliest will be preferred.
- */
-fun <T: Any> Stream<T>.maxWith(cmp: Comparator<T>): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) >= 0) r else t }
+    = maxWith { a, b -> a.compareTo(b) }
 
 // -------------------------------------------------------------------------------------------------
 
@@ -247,16 +223,16 @@ fun <T: Any> Stream<T>.maxWith(cmp: Comparator<T>): T?
  * If two items compare identical, the earliest will be preferred.
  */
 fun <T: Comparable<T>> Stream<T>.min(): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (r <= t) r else t }
+    = minWith { a, b -> a.compareTo(b) }
 
 // -------------------------------------------------------------------------------------------------
 
 /**
- * Return the minimum item of the stream, determined by delegation to [f].
+ * Return the maximum item of the stream, determined by delegation to [cmp].
  * If two items compare identical, the earliest will be preferred.
  */
-inline fun <T: Any, U: Comparable<U>> Stream<T>.minBy(f: (T) -> U): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (f(r) <= f(t)) r else t }
+fun <T: Any> Stream<T>.maxWith(cmp: Comparator<T>): T?
+    = maxWith { a, b -> cmp.compare(a, b) }
 
 // -------------------------------------------------------------------------------------------------
 
@@ -265,7 +241,7 @@ inline fun <T: Any, U: Comparable<U>> Stream<T>.minBy(f: (T) -> U): T?
  * If two items compare identical, the earliest will be preferred.
  */
 fun <T: Any> Stream<T>.minWith(cmp: Comparator<T>): T?
-    = foldl(null as T?) { r, t -> if (r == null) t else if (cmp.compare(r, t) <= 0) r else t }
+    = minWith { a, b -> cmp.compare(a, b) }
 
 /// [5] Partition //////////////////////////////////////////////////////////////////////////////////
 
