@@ -8,7 +8,7 @@ import org.testng.Assert.*
 
 @Test fun apply() {
     val list = mutableListOf<Int>()
-    Stream(1, 2, 3).apply { list.add(this) }.each {}
+    Stream(1, 2, 3).after { list.add(it) }.each {}
     assertEquals(list, listOf(1, 2, 3))
 }
 
