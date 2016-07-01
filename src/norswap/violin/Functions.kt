@@ -1,9 +1,46 @@
 package norswap.violin
 
 /**
- * This file contains inline methods to convert between functions (of max three parameters, so
- * that you can actually pass a method of two parameters) and functions over pairs.
+ * This file contains inline methods to:
+ *
+ * (1) Convert between function with and without receivers (by shifting the first parameter
+ *     into receiver position, or vice-versa): [shift], [unshift].
+ *
+ * (2) Convert between functions (of max three parameters, so
+ *     that you can actually pass a method of two parameters) and functions over pairs.
  */
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Shifts the parameter of [f] into receiver position.
+ */
+inline fun <A, R> shift (crossinline f: (A) -> R): A.() -> R
+    = { f(this) }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Shifts the first parameter of [f] into receiver position.
+ */
+inline fun <A, B, R> shift (crossinline f: (A, B) -> R): A.(B) -> R
+    = { b -> f(this, b) }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Unshifts the receiver of [f] into parameter position.
+ */
+inline fun <A, R> unshift (crossinline f: A.() -> R): (A) -> R
+    = { it.f() }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Unshifts the receiver of [f] into parameter position.
+ */
+fun <A, B, R> unshift (f: A.(B) -> R): (A, B) -> R
+    = { a, b -> a.f(b) }
 
 // -------------------------------------------------------------------------------------------------
 
