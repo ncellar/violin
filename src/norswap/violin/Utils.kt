@@ -1,8 +1,8 @@
 @file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.utils
-
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.Comparator
 
 /**
  * Returns the result of [f].
@@ -80,3 +80,15 @@ operator fun CharSequence.get(start: Int, end: Int = length): String {
  */
 fun readFile(file: String)
     = String(Files.readAllBytes(Paths.get(file)))
+
+/**
+ * Returns a comparator for type T that delegates to a [Comparable] type U.
+ */
+fun <T, U: Comparable<U>> comparator(f: (T) -> U)
+    = Comparator<T> { o1, o2 -> f(o1).compareTo(f(o2)) }
+
+/**
+ * Returns a comparator for type T that delegates to the comparator [cmp] for type U.
+ */
+fun <T, U> comparator(cmp: Comparator<U>, f: (T) -> U)
+    = Comparator<T> { o1, o2 -> cmp.compare(f(o1), f(o2)) }
