@@ -46,20 +46,18 @@ inline fun <T: Any> Stream<T>.after(crossinline f: (T) -> Unit): Stream<T>
  * Returns a stream consisting of the results of replacing each item of this stream with the
  * contents of a stream produced by applying [f] to the item.
  */
-inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Stream<R> =
-    object: Stream<R> {
-        var nextStream: Stream<R>? = null
-        override fun next(): R? {
-            var next: R? = null
-            while (next == null) {
-                if (nextStream == null) nextStream = this@fmap.next()?.let(f)
-                if (nextStream == null) return null
-                next = nextStream?.next()
-                if (next == null) nextStream = null
-            }
-            return next
+inline fun <T: Any, R: Any> Stream<T>.fmap(crossinline f: (T) -> Stream<R>): Stream<R> {
+    var nextStream: Stream<R>? = null
+    return Stream {
+        var next: R? = null
+        while (next == null) {
+            if (nextStream == null) nextStream = next()?.let(f)
+            if (nextStream == null) break
+            next = nextStream?.next()
+            if (next == null) nextStream = null
         }
-    }
+        next
+}   }
 
 /// [2] Filtering //////////////////////////////////////////////////////////////////////////////////
 
@@ -159,11 +157,10 @@ fun <T: Any> Stream<T>.limit(n: Int): Stream<T> {
  * Returns a stream consisting of the items of this stream, paired with its index (starting
  * at 0 for the next item of this stream).
  */
-fun <T: Any> Stream<T>.indexed(): Stream<IndexedValue<T>> =
-    object: Stream<IndexedValue<T>> {
-        private var i = 0
-        override fun next() = this@indexed.next()?.let { IndexedValue(i++, it) }
-    }
+fun <T: Any> Stream<T>.indexed(): Stream<IndexedValue<T>> {
+    var i = 0
+    return Stream { next()?.let { IndexedValue(i++, it) } }
+}
 
 // -------------------------------------------------------------------------------------------------
 
