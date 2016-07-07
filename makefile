@@ -86,8 +86,10 @@ publish:
 docs:
 	mkdir -p out/docs/java
 	mkdir -p out/docs/kotlin
-	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp) -include src/norswap/violin/stream/package.md
-	java -cp $(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar org.jetbrains.dokka.MainKt src -output out/docs/java -format javadoc -classpath $(cp)
+	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp) \
+		-include src/norswap/violin/stream/package.md
+	java -cp $(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar org.jetbrains.dokka.MainKt src \
+		 -output out/docs/java -format javadoc -classpath $(cp)
 
 pubdocs:
 	rm -rf pages/*
