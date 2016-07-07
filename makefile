@@ -6,14 +6,6 @@ DOKKA_VER:=0.9.8
 
 TESTNG:="http://central.maven.org/maven2/org/testng/testng/$(TESTNG_VER)/testng-$(TESTNG_VER).jar"
 JCOMMA:="http://central.maven.org/maven2/com/beust/jcommander/$(JCOMMA_VER)/jcommander-$(JCOMMA_VER).jar"
-
-#KOTLIN_RT:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-runtime/$(KOTLIN_VER)/kotlin-runtime-$(KOTLIN_VER).jar"
-#KOTLIN_RE:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-reflect/$(KOTLIN_VER)/kotlin-reflect-$(KOTLIN_VER).jar"
-#KOTLIN_RES:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-reflect/$(KOTLIN_VER)/kotlin-reflect-$(KOTLIN_VER)-sources.jar"
-#KOTLIN_RTS:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-runtime/$(KOTLIN_VER)/kotlin-runtime-$(KOTLIN_VER)-sources.jar"
-#KOTLIN_SL:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/$(KOTLIN_VER)/kotlin-stdlib-$(KOTLIN_VER).jar"
-#KOTLIN_SLS:="http://central.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/$(KOTLIN_VER)/kotlin-stdlib-$(KOTLIN_VER)-sources.jar"
-
 DOKKA:="https://github.com/Kotlin/dokka/releases/download/$(DOKKA_VER)/dokka-fatjar.jar"
 KOTLIN:="https://github.com/JetBrains/kotlin/releases/download/v$(KOTLIN_VER)/kotlin-compiler-$(KOTLIN_VER).zip"
 
@@ -65,17 +57,11 @@ fetchlibs:
 	curl -L $(DOKKA)	  > lib/dokka.jar
 	curl -L $(TESTNG)	  > lib/testng.jar
 	curl -L $(JCOMMA)     > lib/jcommander.jar
-#	curl -L $(KOTLIN_RT)  > lib/kotlin-runtime.jar
-#	curl -L $(KOTLIN_RTS) > lib/kotlin-runtime-sources.jar
-#	curl -L $(KOTLIN_SL)  > lib/kotlin-stdlib.jar
-#	curl -L $(KOTLIN_SLS) > lib/kotlin-stdlib-sources.jar
 
 jar:
 	jar cf out/violin-$(VERSION).jar out/production/*
 
 docs:
-#	mkdir -p out/docs/md
-#	java -jar lib/dokka.jar src -output out/docs/md -format jekyll -classpath $(cp)
 	mkdir -p out/docs/java
 	mkdir -p out/docs/kotlin
 	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp)
