@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<title>Stream.iterator - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href="index.html">Stream</a>&nbsp;/&nbsp;<a href=".">iterator</a><br/>
+<br/>
+<h1>iterator</h1>
+<a name="norswap.violin.stream.Stream$iterator()"></a>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><br/>
+<p>Converts the stream to an iterator.</p>
+<p>The stream and the iterator are linked:
+items consumed within one will not show up in the other.</p>
+<p>This method ensures that streams can be used in Kotlin for-loops.
+This is why it isnt called <code>toIterator</code>, and why it is not an extension method
+(to make for loops available without the need to import extension methods).</p>
+<br/>
+<br/>
+<br/>
+<br/>
+</BODY>
+</HTML>

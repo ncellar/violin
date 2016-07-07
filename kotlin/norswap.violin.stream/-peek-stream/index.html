@@ -1,0 +1,449 @@
+<HTML>
+<HEAD>
+<title>PeekStream - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href=".">PeekStream</a><br/>
+<br/>
+<h1>PeekStream</h1>
+<code><span class="keyword">interface </span><span class="identifier">PeekStream</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><br/>
+<p>A peek stream is a stream where one can peek at the next value without advancing the stream.</p>
+<br/>
+<br/>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="is-empty.html">isEmpty</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">isEmpty</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code><p>Is this stream empty?</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="peek.html">peek</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">peek</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Peek at the next value (the value that <a href="../-stream/next.html">next</a> would return) without advancing the stream.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../-stream/iterator.html">iterator</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Converts the stream to an iterator.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../-stream/next.html">next</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">next</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Returns the next item in the stream, or ´null´ if the stream is the stream is over.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="empty.html">empty</a></td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">empty</span><span class="symbol">: </span><span class="identifier">PeekStream</span><span class="symbol">&lt;</span><span class="identifier">Nothing</span><span class="symbol">&gt;</span></code><p>An empty peek stream, assignable to PeekStream for any T.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="invoke.html">invoke</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream.PeekStream.Companion$invoke(kotlin.Function0((norswap.violin.stream.PeekStream.Companion.invoke.U)))/nextImpl">nextImpl</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">U</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PeekStream</span><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span></code><p>Creates a PeekStream from a <a href="../-stream/next.html">next</a> implementation
+by caching the next item.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream.PeekStream.Companion$invoke(norswap.violin.stream.Stream((norswap.violin.stream.PeekStream.Companion.invoke.U)))/stream">stream</span><span class="symbol">:</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PeekStream</span><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span></code><p>Creates a PeekStream from an existing stream by caching the next item.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">invoke</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="norswap.violin.stream.PeekStream.Companion$invoke(kotlin.Array((norswap.violin.stream.PeekStream.Companion.invoke.U)))/items">items</span><span class="symbol">:</span>&nbsp;<span class="identifier">U</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PeekStream</span><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span></code><p>Creates a PeekStream from the given items.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../after.html">after</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">after</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$after(norswap.violin.stream.Stream((norswap.violin.stream.after.T)), kotlin.Function1((norswap.violin.stream.after.T, kotlin.Unit)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream that yields the same items as this stream, but applying <a href="../after.html#norswap.violin.stream$after(norswap.violin.stream.Stream((norswap.violin.stream.after.T)), kotlin.Function1((norswap.violin.stream.after.T, kotlin.Unit)))/f">f</a> to each
+item before yielding it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../all.html">all</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">all</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$all(norswap.violin.stream.Stream((norswap.violin.stream.all.T)), kotlin.Function1((norswap.violin.stream.all.T, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code><p>Indicates whether all items of this stream match the given predicate
+(true if the stream is empty).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../any.html">any</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">any</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$any(norswap.violin.stream.Stream((norswap.violin.stream.any.T)), kotlin.Function1((norswap.violin.stream.any.T, kotlin.Boolean)))/p">p</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code><p>Indicates whether any item of this stream matches the given predicate.
+This consumes items in the stream up to and including the one matching the predicate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../any-array.html">anyArray</a></td>
+<td>
+<code><span class="keyword">fun </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">Any</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">anyArray</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Array</span><span class="symbol">&lt;</span><span class="identifier">Any</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into an array (with type parameter Any) and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../array.html">array</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">array</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Array</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into an array and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../associate.html">associate</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">associate</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$associate(norswap.violin.stream.Stream((norswap.violin.stream.associate.T)), kotlin.Function1((norswap.violin.stream.associate.T, kotlin.Pair((norswap.violin.stream.associate.K, norswap.violin.stream.associate.V)))))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code><p>Returns a mutable map that contains the entry returned by <a href="../associate.html#norswap.violin.stream$associate(norswap.violin.stream.Stream((norswap.violin.stream.associate.T)), kotlin.Function1((norswap.violin.stream.associate.T, kotlin.Pair((norswap.violin.stream.associate.K, norswap.violin.stream.associate.V)))))/f">f</a> for each item in the stream.
+The items are inserted in stream order, so the latest item which claims a key wins.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../associate-mutable.html">associateMutable</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">K</span><span class="symbol">, </span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">associateMutable</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$associateMutable(norswap.violin.stream.Stream((norswap.violin.stream.associateMutable.T)), kotlin.Function1((norswap.violin.stream.associateMutable.T, kotlin.Pair((norswap.violin.stream.associateMutable.K, norswap.violin.stream.associateMutable.V)))))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MutableMap</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code><p>Returns a mutable map that contains the entry returned by <a href="../associate-mutable.html#norswap.violin.stream$associateMutable(norswap.violin.stream.Stream((norswap.violin.stream.associateMutable.T)), kotlin.Function1((norswap.violin.stream.associateMutable.T, kotlin.Pair((norswap.violin.stream.associateMutable.K, norswap.violin.stream.associateMutable.V)))))/f">f</a> for each item in the stream.
+The items are inserted in stream order, so the latest item which claims a key wins.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../../norswap.violin.utils/kotlin.-any/cast.html">cast</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">cast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Casts the receiver to <a href="#">T</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../count.html">count</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">count</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Int</span></code><p>Returns the number of items left in the stream, consuming all items in the process.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../distinct.html">distinct</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">distinct</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the distinct items of this stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../distinct-by.html">distinctBy</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">K</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">distinctBy</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$distinctBy(norswap.violin.stream.Stream((norswap.violin.stream.distinctBy.T)), kotlin.Function1((norswap.violin.stream.distinctBy.T, norswap.violin.stream.distinctBy.K)))/selector">selector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">K</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of items whose selector (as returned by <a href="../distinct-by.html#norswap.violin.stream$distinctBy(norswap.violin.stream.Stream((norswap.violin.stream.distinctBy.T)), kotlin.Function1((norswap.violin.stream.distinctBy.T, norswap.violin.stream.distinctBy.K)))/selector">selector</a>) are distinct.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../drop.html">drop</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">drop</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$drop(norswap.violin.stream.Stream((norswap.violin.stream.drop.T)), kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;1<span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, minus its <a href="../drop.html#norswap.violin.stream$drop(norswap.violin.stream.Stream((norswap.violin.stream.drop.T)), kotlin.Int)/n">n</a> first items.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../drop-while.html">dropWhile</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">dropWhile</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$dropWhile(norswap.violin.stream.Stream((norswap.violin.stream.dropWhile.T)), kotlin.Function1((norswap.violin.stream.dropWhile.T, kotlin.Boolean)))/drop">drop</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, minus all the items at the beginning
+of the stream that match <a href="../drop-while.html#norswap.violin.stream$dropWhile(norswap.violin.stream.Stream((norswap.violin.stream.dropWhile.T)), kotlin.Function1((norswap.violin.stream.dropWhile.T, kotlin.Boolean)))/drop">drop</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../each.html">each</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">each</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$each(norswap.violin.stream.Stream((norswap.violin.stream.each.T)), kotlin.Function1((norswap.violin.stream.each.T, kotlin.Unit)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><p>Applies <a href="../each.html#norswap.violin.stream$each(norswap.violin.stream.Stream((norswap.violin.stream.each.T)), kotlin.Function1((norswap.violin.stream.each.T, kotlin.Unit)))/f">f</a> to each item in the stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../filter.html">filter</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filter</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$filter(norswap.violin.stream.Stream((norswap.violin.stream.filter.T)), kotlin.Function1((norswap.violin.stream.filter.T, kotlin.Boolean)))/keep">keep</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream that match the <a href="../filter.html#norswap.violin.stream$filter(norswap.violin.stream.Stream((norswap.violin.stream.filter.T)), kotlin.Function1((norswap.violin.stream.filter.T, kotlin.Boolean)))/keep">keep</a> predicate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../filter-map.html">filterMap</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterMap</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$filterMap(norswap.violin.stream.Stream((norswap.violin.stream.filterMap.T)), kotlin.Function1((norswap.violin.stream.filterMap.T, norswap.violin.stream.filterMap.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code><p>Returns a stream equivalent to <code>this.filter{f(it)=null}.map{f(it)}</code>, but which
+evaluates <a href="../filter-map.html#norswap.violin.stream$filterMap(norswap.violin.stream.Stream((norswap.violin.stream.filterMap.T)), kotlin.Function1((norswap.violin.stream.filterMap.T, norswap.violin.stream.filterMap.R)))/f">f</a> only once per element.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../fmap.html">fmap</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">fmap</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$fmap(norswap.violin.stream.Stream((norswap.violin.stream.fmap.T)), kotlin.Function1((norswap.violin.stream.fmap.T, norswap.violin.stream.Stream((norswap.violin.stream.fmap.R)))))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the results of replacing each item of this stream with the
+contents of a stream produced by applying <a href="../fmap.html#norswap.violin.stream$fmap(norswap.violin.stream.Stream((norswap.violin.stream.fmap.T)), kotlin.Function1((norswap.violin.stream.fmap.T, norswap.violin.stream.Stream((norswap.violin.stream.fmap.R)))))/f">f</a> to the item.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../foldl.html">foldl</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">foldl</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$foldl(norswap.violin.stream.Stream((norswap.violin.stream.foldl.T)), norswap.violin.stream.foldl.R, kotlin.Function2((norswap.violin.stream.foldl.R, norswap.violin.stream.foldl.T, )))/first">first</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$foldl(norswap.violin.stream.Stream((norswap.violin.stream.foldl.T)), norswap.violin.stream.foldl.R, kotlin.Function2((norswap.violin.stream.foldl.R, norswap.violin.stream.foldl.T, )))/reduce">reduce</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code><p>Folds <a href="../foldl.html#norswap.violin.stream$foldl(norswap.violin.stream.Stream((norswap.violin.stream.foldl.T)), norswap.violin.stream.foldl.R, kotlin.Function2((norswap.violin.stream.foldl.R, norswap.violin.stream.foldl.T, )))/reduce">reduce</a> over the items of the stream, from left to right, using <a href="../foldl.html#norswap.violin.stream$foldl(norswap.violin.stream.Stream((norswap.violin.stream.foldl.T)), norswap.violin.stream.foldl.R, kotlin.Function2((norswap.violin.stream.foldl.R, norswap.violin.stream.foldl.T, )))/first">first</a> as initial
+item on the left.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../foldr.html">foldr</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">foldr</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/last">last</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/reduce">reduce</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code><p>Folds <a href="../foldr.html#norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/reduce">reduce</a> over the items of the stream, from right to left, using <a href="../foldr.html#norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/last">last</a> as initial
+item on the right.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../group-by.html">groupBy</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">K</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">groupBy</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$groupBy(norswap.violin.stream.Stream((norswap.violin.stream.groupBy.T)), kotlin.Function1((norswap.violin.stream.groupBy.T, norswap.violin.stream.groupBy.K)))/selector">selector</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">K</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Map</span><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Groups items in the stream by the selector returned by <a href="../group-by.html#norswap.violin.stream$groupBy(norswap.violin.stream.Stream((norswap.violin.stream.groupBy.T)), kotlin.Function1((norswap.violin.stream.groupBy.T, norswap.violin.stream.groupBy.K)))/selector">selector</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../indexed.html">indexed</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">indexed</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">IndexedValue</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, paired with its index (starting
+at 0 for the next item of this stream).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../join-to.html">joinTo</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/Appendable.html"><span class="identifier">Appendable</span></a><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">joinTo</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/buffer">buffer</span><span class="symbol">:</span>&nbsp;<span class="identifier">A</span><span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/separator">separator</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;", "<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/prefix">prefix</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/postfix">postfix</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/limit">limit</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;-1<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/truncated">truncated</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;"..."<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">A</span></code><p>Creates a string from all the items separated using <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/separator">separator</a> and using the given <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/prefix">prefix</a> and
+<a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/postfix">postfix</a> if supplied. If you specify a non-negative value of <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/limit">limit</a>, only the first <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/limit">limit</a>
+items will be appended, followed by the <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/truncated">truncated</a> string (which defaults to "...").
+If non-null, <a href="../join-to.html#norswap.violin.stream$joinTo(norswap.violin.stream.Stream((norswap.violin.stream.joinTo.T)), norswap.violin.stream.joinTo.A, kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinTo.T, kotlin.CharSequence)))/transform">transform</a> is applied to all items prior to appending.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../join-to-string.html">joinToString</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">joinToString</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/separator">separator</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;", "<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/prefix">prefix</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/postfix">postfix</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/limit">limit</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;-1<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/truncated">truncated</span><span class="symbol">:</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;"..."<span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/transform">transform</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">CharSequence</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code><p>Creates a string from all the items separated using <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/separator">separator</a> and using the given <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/prefix">prefix</a> and
+<a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/postfix">postfix</a> if supplied. If you specify a non-negative value of <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/limit">limit</a>, only the first <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/limit">limit</a>
+items will be appended, followed by the <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/truncated">truncated</a> string (which defaults to "...").
+If non-null, <a href="../join-to-string.html#norswap.violin.stream$joinToString(norswap.violin.stream.Stream((norswap.violin.stream.joinToString.T)), kotlin.CharSequence, kotlin.CharSequence, kotlin.CharSequence, kotlin.Int, kotlin.CharSequence, kotlin.Function1((norswap.violin.stream.joinToString.T, kotlin.CharSequence)))/transform">transform</a> is applied to all items prior to appending.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../last.html">last</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">last</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Returns the last item of this stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../limit.html">limit</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">limit</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$limit(norswap.violin.stream.Stream((norswap.violin.stream.limit.T)), kotlin.Int)/n">n</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, with a limit of <a href="../limit.html#norswap.violin.stream$limit(norswap.violin.stream.Stream((norswap.violin.stream.limit.T)), kotlin.Int)/n">n</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../link-list.html">linkList</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">linkList</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../norswap.violin.link/-link-list/index.html"><span class="identifier">LinkList</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a link list (the first item of the stream will
+be the last item of the list) and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../list.html">list</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">list</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a list and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../map.html">map</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$map(norswap.violin.stream.Stream((norswap.violin.stream.map.T)), kotlin.Function1((norswap.violin.stream.map.T, norswap.violin.stream.map.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the results of applying <a href="../map.html#norswap.violin.stream$map(norswap.violin.stream.Stream((norswap.violin.stream.map.T)), kotlin.Function1((norswap.violin.stream.map.T, norswap.violin.stream.map.R)))/f">f</a> to the items of this stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../max.html">max</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Comparable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">max</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the maximum item of the stream.
+If two items compare identical, the earliest will be preferred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../max-with.html">maxWith</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">maxWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$maxWith(norswap.violin.stream.Stream((norswap.violin.stream.maxWith.T)), kotlin.Function2((norswap.violin.stream.maxWith.T, , kotlin.Int)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the maximum item of the stream according to <a href="../max-with.html#norswap.violin.stream$maxWith(norswap.violin.stream.Stream((norswap.violin.stream.maxWith.T)), kotlin.Function2((norswap.violin.stream.maxWith.T, , kotlin.Int)))/cmp">cmp</a>
+(same contract as <code>java.util.Comparator.compare</code>).
+If two items compare identical, the earliest will be preferred.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">maxWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$maxWith(norswap.violin.stream.Stream((norswap.violin.stream.maxWith.T)), java.util.Comparator((norswap.violin.stream.maxWith.T)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the maximum item of the stream, determined by delegation to <a href="../max-with.html#norswap.violin.stream$maxWith(norswap.violin.stream.Stream((norswap.violin.stream.maxWith.T)), java.util.Comparator((norswap.violin.stream.maxWith.T)))/cmp">cmp</a>.
+If two items compare identical, the earliest will be preferred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../min.html">min</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Comparable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">min</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the minimum item of the stream.
+If two items compare identical, the earliest will be preferred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../min-with.html">minWith</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), kotlin.Function2((norswap.violin.stream.minWith.T, , kotlin.Int)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the minimum item of the stream according to <a href="../min-with.html#norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), kotlin.Function2((norswap.violin.stream.minWith.T, , kotlin.Int)))/cmp">cmp</a>
+(same contract as <code>java.util.Comparator.compare</code>).
+If two items compare identical, the earliest will be preferred.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), java.util.Comparator((norswap.violin.stream.minWith.T)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the minimum item of the stream, determined by delegation to <a href="../min-with.html#norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), java.util.Comparator((norswap.violin.stream.minWith.T)))/cmp">cmp</a>.
+If two items compare identical, the earliest will be preferred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../mutable-list.html">mutableList</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mutableList</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MutableList</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a mutable list and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../mutable-set.html">mutableSet</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">mutableSet</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MutableSet</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a mutable set and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../partition.html">partition</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">partition</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$partition(norswap.violin.stream.Stream((norswap.violin.stream.partition.T)), kotlin.Function1((norswap.violin.stream.partition.T, kotlin.Boolean)))/predicate">predicate</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">,</span>&nbsp;<span class="identifier">List</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Groups items in two lists depending on whether <a href="../partition.html#norswap.violin.stream$partition(norswap.violin.stream.Stream((norswap.violin.stream.partition.T)), kotlin.Function1((norswap.violin.stream.partition.T, kotlin.Boolean)))/predicate">predicate</a> returns true (first list) or
+false (second list) for each item.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../reduce.html">reduce</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">reduce</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$reduce(norswap.violin.stream.Stream((norswap.violin.stream.reduce.T)), kotlin.Function2((norswap.violin.stream.reduce.T, , )))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Folds <a href="../reduce.html#norswap.violin.stream$reduce(norswap.violin.stream.Stream((norswap.violin.stream.reduce.T)), kotlin.Function2((norswap.violin.stream.reduce.T, , )))/f">f</a> over the items of the stream, from left to right.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../reduce-right.html">reduceRight</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">reduceRight</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$reduceRight(norswap.violin.stream.Stream((norswap.violin.stream.reduceRight.T)), kotlin.Function2((norswap.violin.stream.reduceRight.T, , )))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Folds <a href="../reduce-right.html#norswap.violin.stream$reduceRight(norswap.violin.stream.Stream((norswap.violin.stream.reduceRight.T)), kotlin.Function2((norswap.violin.stream.reduceRight.T, , )))/f">f</a> over the items of the stream, from right to left.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../set.html">set</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">set</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Set</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a set and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../stack.html">stack</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">stack</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../norswap.violin/-stack/index.html"><span class="identifier">Stack</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Pulls all the items of the stream into a stack (the first item of the stream will
+be the last item of the list) and returns it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../take-while.html">takeWhile</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">takeWhile</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$takeWhile(norswap.violin.stream.Stream((norswap.violin.stream.takeWhile.T)), kotlin.Function1((norswap.violin.stream.takeWhile.T, kotlin.Boolean)))/keep">keep</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, until an item that doesnt match
+<a href="../take-while.html#norswap.violin.stream$takeWhile(norswap.violin.stream.Stream((norswap.violin.stream.takeWhile.T)), kotlin.Function1((norswap.violin.stream.takeWhile.T, kotlin.Boolean)))/keep">keep</a> is encountered (this item will not be yielded by the returned stream).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../then.html">then</a></td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">then</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$then(norswap.violin.stream.Stream((norswap.violin.stream.then.T)), norswap.violin.stream.Stream((norswap.violin.stream.then.T)))/other">other</span><span class="symbol">:</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Return a stream that is the concatenation of this stream with <a href="../then.html#norswap.violin.stream$then(norswap.violin.stream.Stream((norswap.violin.stream.then.T)), norswap.violin.stream.Stream((norswap.violin.stream.then.T)))/other">other</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../to-java-stream.html">toJavaStream</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toJavaStream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/stream/Stream.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Converts this to a java stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../to-sequence.html">toSequence</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">toSequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">&lt;ERROR CLASS&gt;</span></code><p>Converts this to a kotlin sequence.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../up-through.html">upThrough</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">upThrough</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$upThrough(norswap.violin.stream.Stream((norswap.violin.stream.upThrough.T)), kotlin.Function1((norswap.violin.stream.upThrough.T, kotlin.Boolean)))/stop">stop</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, until an item matching <a href="../up-through.html#norswap.violin.stream$upThrough(norswap.violin.stream.Stream((norswap.violin.stream.upThrough.T)), kotlin.Function1((norswap.violin.stream.upThrough.T, kotlin.Boolean)))/stop">stop</a> is
+encountered. The matching item will be the last item of the returned stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../up-to.html">upTo</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">upTo</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$upTo(norswap.violin.stream.Stream((norswap.violin.stream.upTo.T)), kotlin.Function1((norswap.violin.stream.upTo.T, kotlin.Boolean)))/stop">stop</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Boolean</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of this stream, until an item matching <a href="../up-to.html#norswap.violin.stream$upTo(norswap.violin.stream.Stream((norswap.violin.stream.upTo.T)), kotlin.Function1((norswap.violin.stream.upTo.T, kotlin.Boolean)))/stop">stop</a> is
+encountered. The returned stream does not yield the matching item.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../zip.html">zip</a></td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">zip</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$zip(norswap.violin.stream.Stream((norswap.violin.stream.zip.T)), norswap.violin.stream.Stream((norswap.violin.stream.zip.U)))/other">other</span><span class="symbol">:</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">U</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of pairs made up by one item of this stream and one item of
+<a href="../zip.html#norswap.violin.stream$zip(norswap.violin.stream.Stream((norswap.violin.stream.zip.T)), norswap.violin.stream.Stream((norswap.violin.stream.zip.U)))/other">other</a>. The stream only runs as far as the shortest of the two streams.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../ziplong.html">ziplong</a></td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">ziplong</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$ziplong(norswap.violin.stream.Stream((norswap.violin.stream.ziplong.T)), norswap.violin.stream.Stream((norswap.violin.stream.ziplong.U)))/other">other</span><span class="symbol">:</span>&nbsp;<a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">?</span><span class="symbol">,</span>&nbsp;<span class="identifier">U</span><span class="symbol">?</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of pairs made up by one item of this stream and one item of
+<a href="../ziplong.html#norswap.violin.stream$ziplong(norswap.violin.stream.Stream((norswap.violin.stream.ziplong.T)), norswap.violin.stream.Stream((norswap.violin.stream.ziplong.U)))/other">other</a>. The stream runs as far as the longest of the two streams.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

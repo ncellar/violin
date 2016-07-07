@@ -1,0 +1,87 @@
+<HTML>
+<HEAD>
+<title>norswap.violin.utils - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href=".">norswap.violin.utils</a><br/>
+<br/>
+<h2>Package norswap.violin.utils</h2>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="java.lang.-string-builder/index.html">java.lang.StringBuilder</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="java.util.-comparator/index.html">java.util.Comparator</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="kotlin.-any/index.html">kotlin.Any</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="kotlin.-boolean/index.html">kotlin.Boolean</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="kotlin.-char-sequence/index.html">kotlin.CharSequence</a></td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="after.html">after</a></td>
+<td>
+<code><span class="keyword">infix</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">T</span><span class="symbol">.</span><span class="identifier">after</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.utils$after(norswap.violin.utils.after.T, kotlin.Function1((norswap.violin.utils.after.T, kotlin.Unit)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Unit</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Returns the receiver after evaluating <a href="after.html#norswap.violin.utils$after(norswap.violin.utils.after.T, kotlin.Function1((norswap.violin.utils.after.T, kotlin.Unit)))/f">f</a> on it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="array.html">array</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">array</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="norswap.violin.utils$array(kotlin.Array((norswap.violin.utils.array.T)))/items">items</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Array</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Analogous to <code>Kotlin.arrayOf</code>, but doesnt require reification.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="comparator.html">comparator</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">, </span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Comparable</span><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span> <span class="identifier">comparator</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.utils$comparator(kotlin.Function1((norswap.violin.utils.comparator.T, norswap.violin.utils.comparator.U)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">U</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a comparator for type T that delegates to a <code>Comparable</code> type U.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="expr.html">expr</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">expr</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.utils$expr(kotlin.Function0((norswap.violin.utils.expr.T)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Returns the result of <a href="expr.html#norswap.violin.utils$expr(kotlin.Function0((norswap.violin.utils.expr.T)))/f">f</a>.
+The point is to allow statements in an expression context.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="read-file.html">readFile</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">readFile</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.utils$readFile(kotlin.String)/file">file</span><span class="symbol">:</span>&nbsp;<span class="identifier">String</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code><p>Reads a complete file and returns its contents as a string.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

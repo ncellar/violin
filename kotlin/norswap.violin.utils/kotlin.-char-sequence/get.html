@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<title>get - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin.utils</a>&nbsp;/&nbsp;<a href="index.html">kotlin.CharSequence</a>&nbsp;/&nbsp;<a href=".">get</a><br/>
+<br/>
+<h1>get</h1>
+<a name="norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)"></a>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">CharSequence</span><span class="symbol">.</span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/start">start</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">, </span><span class="identifier" id="norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/end">end</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span>&nbsp;<span class="symbol">=</span>&nbsp;length<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code><br/>
+<p>Like <code>String.substring</code> but allows <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/start">start</a> and <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/end">end</a> to be negative numbers.</p>
+<p>The first item in the sequence has index <code>0</code> (same as <code>-length</code>).
+The last item in the sequence has index <code>length-1</code> (same as <code>-1</code>).</p>
+<p>The <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/start">start</a> bound is always inclusive.
+The <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/end">end</a> bound is exclusive if positive, else exclusive.</p>
+<p>Throws an <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/IndexOutOfBoundsException.html">IndexOutOfBoundsException</a> if the <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/start">start</a> bounds refers to an index below <code>0</code> or
+if <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/end">end</a> refers to an index equal to or past <code>CharSequence.length</code>.</p>
+<p>It is fine to call this with <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/start">start</a> referring to <code>a</code> and <a href="get.html#norswap.violin.utils$get(kotlin.CharSequence, kotlin.Int, kotlin.Int)/end">end</a> referring to <code>b</code> such that
+<code>a&gt;b</code>, as long the previous condition is respected. The result is then the empty string.</p>
+<br/>
+<br/>
+<br/>
+<br/>
+</BODY>
+</HTML>

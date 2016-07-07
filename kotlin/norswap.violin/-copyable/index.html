@@ -1,0 +1,48 @@
+<HTML>
+<HEAD>
+<title>Copyable - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin</a>&nbsp;/&nbsp;<a href=".">Copyable</a><br/>
+<br/>
+<h1>Copyable</h1>
+<code><span class="keyword">interface </span><span class="identifier">Copyable</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Cloneable</span></code><br/>
+<p>An interface analogous to the Kotlin version of <code>Cloneable</code>, except that <a href="copy.html">copy</a> is public
+and that <a href="copycast.html">copycast</a> is available for effortless casting.</p>
+<br/>
+<br/>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="copy.html">copy</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">copy</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Any</span></code><p>Returns a copy of the object.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="copycast.html">copycast</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">copycast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Same as <a href="copy.html">copy</a>, but casts the copy to <a href="#">T</a> (which should be inferred, use an explicit cast
+otherwise).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.utils/kotlin.-any/cast.html">cast</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">cast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Casts the receiver to <a href="#">T</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

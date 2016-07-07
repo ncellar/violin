@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<title>Maybe - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin</a>&nbsp;/&nbsp;<a href=".">Maybe</a><br/>
+<br/>
+<h1>Maybe</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Maybe</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span></code><br/>
+<p>Represent a possible value (<a href="../-some/index.html">Some</a>) or an absence of value (<a href="../-none.html">None</a>).</p>
+<p>In general, you should use nullable types (<code>T?</code>) instead of Maybe.</p>
+<p>In some cases, you cant use nullable types because null already fills another role
+(for instance, it signals to end of a stream). In those case, you can use Maybe, although it
+is advisable to be wary of it.</p>
+<ul><li><p>You can convert a nullable into a Maybe using the Maybe function.</p>
+</li><li><p>You can convert a Maybe into a nullable by using <a href="invoke.html">invoke</a>.</p>
+</li></ul><br/>
+<br/>
+<br/>
+<br/>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="equals.html">equals</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.Maybe$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Boolean</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="hash-code.html">hashCode</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Int</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="invoke.html">invoke</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<a href="to-string.html">toString</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.utils/kotlin.-any/cast.html">cast</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">cast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Casts the receiver to <a href="#">T</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../-none.html">None</a></td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">None</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Maybe</span><span class="symbol">&lt;</span><span class="identifier">Nothing</span><span class="symbol">&gt;</span></code><p>See Maybe.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../-some/index.html">Some</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Some</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Maybe</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>See Maybe.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<title>norswap.violin.link - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href=".">norswap.violin.link</a><br/>
+<br/>
+<h2>Package norswap.violin.link</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-link/index.html">Link</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Link</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../norswap.violin.stream/-streamable/index.html"><span class="identifier">Streamable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">Cloneable</span></code><p>Immutable singly linked list data structure. Use null as nil.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-link-list/index.html">LinkList</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LinkList</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../norswap.violin/-stack/index.html"><span class="identifier">Stack</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">Cloneable</span></code><p>A mutable singly linked list implemented as a pointer to an immutable linked list (<a href="-link/index.html">Link</a>)
+and a size.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-link.html">Link</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">Link</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="norswap.violin.link$Link(kotlin.Array((norswap.violin.link.Link.T)))/items">items</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">?</span></code><p>Builds an immutable singly linked list from <a href="-link.html#norswap.violin.link$Link(kotlin.Array((norswap.violin.link.Link.T)))/items">items</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="iterator.html">iterator</a></td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns the iterator of a potentially empty immutable linked list.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="link-stream.html">linkStream</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">linkStream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../norswap.violin.stream/-peek-stream/index.html"><span class="identifier">PeekStream</span></a><span class="symbol">&lt;</span><a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code><p>Returns the <a href="link-stream.html">linkStream</a> of a potentially empty immutable linked list.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="stream.html">stream</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">stream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../norswap.violin.stream/-peek-stream/index.html"><span class="identifier">PeekStream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns the stream of a potentially empty immutable linked list.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="to-string.html">toString</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-link/index.html"><span class="identifier">Link</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">String</span></code><p>Returns a string representing a potentially empty immutable linked list.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

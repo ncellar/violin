@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<title>norswap.violin - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href=".">norswap.violin</a><br/>
+<br/>
+<h2>Package norswap.violin</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-copyable/index.html">Copyable</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Copyable</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Cloneable</span></code><p>An interface analogous to the Kotlin version of <code>Cloneable</code>, except that <a href="-copyable/copy.html">copy</a> is public
+and that <a href="-copyable/copycast.html">copycast</a> is available for effortless casting.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-maybe/index.html">Maybe</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Maybe</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span></code><p>Represent a possible value (<a href="-some/index.html">Some</a>) or an absence of value (<a href="-none.html">None</a>).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-none.html">None</a></td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">None</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-maybe/index.html"><span class="identifier">Maybe</span></a><span class="symbol">&lt;</span><span class="identifier">Nothing</span><span class="symbol">&gt;</span></code><p>See <a href="-maybe/index.html">Maybe</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-some/index.html">Some</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Some</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-maybe/index.html"><span class="identifier">Maybe</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>See <a href="-maybe/index.html">Maybe</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="-stack/index.html">Stack</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Stack</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../norswap.violin.stream/-streamable/index.html"><span class="identifier">Streamable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>A fairly classical stack interface, conspicuously missing from both Java and Kotlin stdlibs.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="-maybe.html">Maybe</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">Maybe</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$Maybe(norswap.violin.Maybe.T)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="-maybe/index.html"><span class="identifier">Maybe</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Creates a <a href="-maybe/index.html">Maybe</a> instance from a nullable object (null -&gt; <a href="-none.html">None</a>).</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="lift.html">lift</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">, </span><span class="identifier">Q</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">lift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$lift(kotlin.Function2((norswap.violin.lift.P, norswap.violin.lift.Q, norswap.violin.lift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Lifts a function of two parameter to a function over a pair.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">P</span><span class="symbol">, </span><span class="identifier">Q</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">lift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$lift(kotlin.Function3((norswap.violin.lift.S, norswap.violin.lift.P, norswap.violin.lift.Q, norswap.violin.lift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">S</span><span class="symbol">,</span>&nbsp;<span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">S</span><span class="symbol">,</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Lift a function of three parameters to a function whose second parameter is a pair.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="lower.html">lower</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">, </span><span class="identifier">Q</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">lower</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$lower(kotlin.Function1((kotlin.Pair((norswap.violin.lower.P, norswap.violin.lower.Q)), norswap.violin.lower.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Lowers a function over a pair to a function of two parameters.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">S</span><span class="symbol">, </span><span class="identifier">P</span><span class="symbol">, </span><span class="identifier">Q</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">lower</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$lower(kotlin.Function2((norswap.violin.lower.S, kotlin.Pair((norswap.violin.lower.P, norswap.violin.lower.Q)), norswap.violin.lower.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">S</span><span class="symbol">,</span>&nbsp;<span class="identifier">Pair</span><span class="symbol">&lt;</span><span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">S</span><span class="symbol">,</span>&nbsp;<span class="identifier">P</span><span class="symbol">,</span>&nbsp;<span class="identifier">Q</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Lowers a function whose second parameter is a pair to a function of three parameters.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="shift.html">shift</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">shift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$shift(kotlin.Function1((norswap.violin.shift.A, norswap.violin.shift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">A</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Shifts the parameter of <a href="shift.html#norswap.violin$shift(kotlin.Function1((norswap.violin.shift.A, norswap.violin.shift.R)))/f">f</a> into receiver position.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">shift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$shift(kotlin.Function2((norswap.violin.shift.A, norswap.violin.shift.B, norswap.violin.shift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">A</span><span class="symbol">.</span><span class="symbol">(</span><span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Shifts the first parameter of <a href="shift.html#norswap.violin$shift(kotlin.Function2((norswap.violin.shift.A, norswap.violin.shift.B, norswap.violin.shift.R)))/f">f</a> into receiver position.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="unshift.html">unshift</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">unshift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$unshift(kotlin.Function1((norswap.violin.unshift.A, norswap.violin.unshift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="identifier">A</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">A</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Unshifts the receiver of <a href="unshift.html#norswap.violin$unshift(kotlin.Function1((norswap.violin.unshift.A, norswap.violin.unshift.R)))/f">f</a> into parameter position.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">, </span><span class="identifier">B</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">unshift</span><span class="symbol">(</span><span class="identifier" id="norswap.violin$unshift(kotlin.Function2((norswap.violin.unshift.A, norswap.violin.unshift.B, norswap.violin.unshift.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="identifier">A</span><span class="symbol">.</span><span class="symbol">(</span><span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="symbol">(</span><span class="identifier">A</span><span class="symbol">,</span>&nbsp;<span class="identifier">B</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span></code><p>Unshifts the receiver of <a href="unshift.html#norswap.violin$unshift(kotlin.Function2((norswap.violin.unshift.A, norswap.violin.unshift.B, norswap.violin.unshift.R)))/f">f</a> into parameter position.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

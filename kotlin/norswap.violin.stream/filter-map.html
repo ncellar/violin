@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<title>filterMap - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href=".">filterMap</a><br/>
+<br/>
+<h1>filterMap</h1>
+<a name="norswap.violin.stream$filterMap(norswap.violin.stream.Stream((norswap.violin.stream.filterMap.T)), kotlin.Function1((norswap.violin.stream.filterMap.T, norswap.violin.stream.filterMap.R)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">filterMap</span><span class="symbol">(</span><span class="keyword">crossinline</span> <span class="identifier" id="norswap.violin.stream$filterMap(norswap.violin.stream.Stream((norswap.violin.stream.filterMap.T)), kotlin.Function1((norswap.violin.stream.filterMap.T, norswap.violin.stream.filterMap.R)))/f">f</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span></code><br/>
+<p>Returns a stream equivalent to <code>this.filter{f(it)=null}.map{f(it)}</code>, but which
+evaluates <a href="filter-map.html#norswap.violin.stream$filterMap(norswap.violin.stream.Stream((norswap.violin.stream.filterMap.T)), kotlin.Function1((norswap.violin.stream.filterMap.T, norswap.violin.stream.filterMap.R)))/f">f</a> only once per element.</p>
+<br/>
+<br/>
+</BODY>
+</HTML>

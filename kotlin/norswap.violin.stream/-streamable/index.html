@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<title>Streamable - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href=".">Streamable</a><br/>
+<br/>
+<h1>Streamable</h1>
+<code><span class="keyword">interface </span><span class="identifier">Streamable</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span></code><br/>
+<p>A streamable is an object that can yield or be represented as a <a href="../-stream/index.html">Stream</a>.</p>
+<br/>
+<br/>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="iterator.html">iterator</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns an iterator backed by a stream.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="stream.html">stream</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">stream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream tied to this object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.utils/kotlin.-any/cast.html">cast</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">cast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Casts the receiver to <a href="#">T</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../iterable.html">iterable</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">Streamable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">iterable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns an iterable backed by the streamable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../sequence.html">sequence</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">Streamable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">sequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Sequence</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a sequence backed by the streamable.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.link/-link/index.html">Link</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Link</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Streamable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">Cloneable</span></code><p>Immutable singly linked list data structure. Use null as nil.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../../norswap.violin/-stack/index.html">Stack</a></td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Stack</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Streamable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>A fairly classical stack interface, conspicuously missing from both Java and Kotlin stdlibs.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

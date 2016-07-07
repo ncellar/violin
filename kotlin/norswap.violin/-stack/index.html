@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<title>Stack - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin</a>&nbsp;/&nbsp;<a href=".">Stack</a><br/>
+<br/>
+<h1>Stack</h1>
+<code><span class="keyword">interface </span><span class="identifier">Stack</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../norswap.violin.stream/-streamable/index.html"><span class="identifier">Streamable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><br/>
+<p>A fairly classical stack interface, conspicuously missing from both Java and Kotlin stdlibs.</p>
+<br/>
+<br/>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="empty.html">empty</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">empty</span><span class="symbol">: </span><span class="identifier">Boolean</span></code><p>Is the stack empty?</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="size.html">size</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">size</span><span class="symbol">: </span><span class="identifier">Int</span></code><p>The number of item in this stack.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="at.html">at</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">at</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.Stack$at(kotlin.Int)/depth">depth</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Return the item at the given depth. The item at depth 0 is the top of the stack.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="peek.html">peek</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">peek</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Returns the item at the top of the stack, or null if the stack is empty.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="pop.html">pop</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">pop</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><p>Removes and returns the item at the top of the stack, or null if the stack is empty.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="popping-stream.html">poppingStream</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">poppingStream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../norswap.violin.stream/-peek-stream/index.html"><span class="identifier">PeekStream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream consisting of the items of the stack.
+Consuming items from the stream (with <a href="#">next</a>) pops them from the stack.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="push.html">push</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.Stack$push(norswap.violin.Stack.T)/item">item</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><p>Adds <a href="push.html#norswap.violin.Stack$push(norswap.violin.Stack.T)/item">item</a> on the top of the stack.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="stream.html">stream</a></td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">stream</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../norswap.violin.stream/-peek-stream/index.html"><span class="identifier">PeekStream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a stream tied to this object.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="truncate.html">truncate</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">truncate</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.Stack$truncate(kotlin.Int)/target">target</span><span class="symbol">:</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Unit</span></code><p>Pop items from the stack until its size is <a href="truncate.html#norswap.violin.Stack$truncate(kotlin.Int)/target">target</a>.
+If <code>size&gt;target</code>, does nothing.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.stream/-streamable/iterator.html">iterator</a></td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterator</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns an iterator backed by a stream.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.utils/kotlin.-any/cast.html">cast</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">Any</span><span class="symbol">?</span><span class="symbol">.</span><span class="identifier">cast</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span></code><p>Casts the receiver to <a href="#">T</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../../norswap.violin.stream/iterable.html">iterable</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../../norswap.violin.stream/-streamable/index.html"><span class="identifier">Streamable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">iterable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Iterable</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns an iterable backed by the streamable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../../norswap.violin.stream/sequence.html">sequence</a></td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="../../norswap.violin.stream/-streamable/index.html"><span class="identifier">Streamable</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">sequence</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Sequence</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code><p>Returns a sequence backed by the streamable.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<a href="../../norswap.violin.link/-link-list/index.html">LinkList</a></td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">LinkList</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Stack</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier">Cloneable</span></code><p>A mutable singly linked list implemented as a pointer to an immutable linked list (<a href="../../norswap.violin.link/-link/index.html">Link</a>)
+and a size.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

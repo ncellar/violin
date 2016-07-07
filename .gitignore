@@ -1,0 +1,6 @@
+.DS_Store
+/lib/
+/out/
+/src/Scratch.kt
+/.idea/workspace.xml
+/.idea/uiDesigner.xml

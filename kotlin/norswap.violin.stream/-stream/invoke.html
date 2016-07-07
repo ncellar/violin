@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<title>Stream.invoke - </title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href="index.html">Stream</a>&nbsp;/&nbsp;<a href=".">invoke</a><br/>
+<br/>
+<h1>invoke</h1>
+<a name="norswap.violin.stream.Stream.Companion$invoke(kotlin.Function0((norswap.violin.stream.Stream.Companion.invoke.U)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">invoke</span><span class="symbol">(</span><span class="keyword">crossinline</span> <span class="identifier" id="norswap.violin.stream.Stream.Companion$invoke(kotlin.Function0((norswap.violin.stream.Stream.Companion.invoke.U)))/nextImpl">nextImpl</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">U</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span></code><br/>
+<p><code>Stream{...}</code> is sugar for
+<code>object:Stream{override fun next()=...}</code>.</p>
+<br/>
+<br/>
+<a name="norswap.violin.stream.Stream.Companion$invoke(kotlin.Array((norswap.violin.stream.Stream.Companion.invoke.U)))"></a>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">U</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <span class="identifier">invoke</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="norswap.violin.stream.Stream.Companion$invoke(kotlin.Array((norswap.violin.stream.Stream.Companion.invoke.U)))/items">items</span><span class="symbol">:</span>&nbsp;<span class="identifier">U</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">U</span><span class="symbol">&gt;</span></code><br/>
+<p><code>Stream(1,2,3)</code> is sugar for <code>arrayOf(1,2,3).stream()</code>.</p>
+<br/>
+<br/>
+</BODY>
+</HTML>

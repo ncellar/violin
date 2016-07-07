@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<title>foldr - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href=".">foldr</a><br/>
+<br/>
+<h1>foldr</h1>
+<a name="norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">, </span><span class="identifier">R</span><span class="symbol">&gt;</span> <a href="-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">foldr</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/last">last</span><span class="symbol">:</span>&nbsp;<span class="identifier">R</span><span class="symbol">, </span><span class="identifier" id="norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/reduce">reduce</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">R</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">R</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">R</span></code><br/>
+<p>Folds <a href="foldr.html#norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/reduce">reduce</a> over the items of the stream, from right to left, using <a href="foldr.html#norswap.violin.stream$foldr(norswap.violin.stream.Stream((norswap.violin.stream.foldr.T)), norswap.violin.stream.foldr.R, kotlin.Function2((norswap.violin.stream.foldr.R, norswap.violin.stream.foldr.T, )))/last">last</a> as initial
+item on the right.</p>
+<p>e.g. <code>Stream(1,2,3).foldr(0){r,t-&gt;r+t}</code> == <code>(((0+3)+2)+1)</code></p>
+<br/>
+<br/>
+<br/>
+<br/>
+</BODY>
+</HTML>

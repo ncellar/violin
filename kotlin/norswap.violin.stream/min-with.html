@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<title>minWith - </title>
+<link rel="stylesheet" href="../style.css">
+</HEAD>
+<BODY>
+<a href="index.html">norswap.violin.stream</a>&nbsp;/&nbsp;<a href=".">minWith</a><br/>
+<br/>
+<h1>minWith</h1>
+<a name="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), kotlin.Function2((norswap.violin.stream.minWith.T, , kotlin.Int)))"></a>
+<code><span class="keyword">inline</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), kotlin.Function2((norswap.violin.stream.minWith.T, , kotlin.Int)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">T</span><span class="symbol">,</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<span class="identifier">Int</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><br/>
+<p>Return the minimum item of the stream according to <a href="min-with.html#norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), kotlin.Function2((norswap.violin.stream.minWith.T, , kotlin.Int)))/cmp">cmp</a>
+(same contract as <code>java.util.Comparator.compare</code>).
+If two items compare identical, the earliest will be preferred.</p>
+<br/>
+<br/>
+<a name="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), java.util.Comparator((norswap.violin.stream.minWith.T)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Any</span><span class="symbol">&gt;</span> <a href="-stream/index.html"><span class="identifier">Stream</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">minWith</span><span class="symbol">(</span><span class="identifier" id="norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), java.util.Comparator((norswap.violin.stream.minWith.T)))/cmp">cmp</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/util/Comparator.html"><span class="identifier">Comparator</span></a><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code><br/>
+<p>Return the minimum item of the stream, determined by delegation to <a href="min-with.html#norswap.violin.stream$minWith(norswap.violin.stream.Stream((norswap.violin.stream.minWith.T)), java.util.Comparator((norswap.violin.stream.minWith.T)))/cmp">cmp</a>.
+If two items compare identical, the earliest will be preferred.</p>
+<br/>
+<br/>
+</BODY>
+</HTML>
