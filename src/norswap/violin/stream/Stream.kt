@@ -8,6 +8,8 @@ import java.util.NoSuchElementException
  */
 interface Stream <out T: Any>
 {
+    // ---------------------------------------------------------------------------------------------
+
     companion object {
         /**
          * `Stream { ... }` is sugar for

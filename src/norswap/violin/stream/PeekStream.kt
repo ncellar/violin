@@ -6,9 +6,11 @@ import norswap.violin.utils.after
  */
 interface PeekStream <out T: Any>: Stream<T>
 {
+    // ---------------------------------------------------------------------------------------------
+
     companion object {
         /**
-         * Creates a [PeekStream] from a [Stream.next] implementation
+         * Creates a [PeekStream] from a [next] implementation
          * by caching the next item.
          */
         inline operator fun <U: Any> invoke(crossinline nextImpl: () -> U?)

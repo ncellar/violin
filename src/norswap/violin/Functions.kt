@@ -6,8 +6,8 @@ package norswap.violin
  * (1) Convert between function with and without receivers (by shifting the first parameter
  *     into receiver position, or vice-versa): [shift], [unshift].
  *
- * (2) Convert between functions (of max three parameters, so
- *     that you can actually pass a method of two parameters) and functions over pairs.
+ * (2) Convert between functions and methods of two parameters and functions over pairs:
+ *     [lift] (params -> pair), [lower] (pair -> params).
  */
 
 // -------------------------------------------------------------------------------------------------

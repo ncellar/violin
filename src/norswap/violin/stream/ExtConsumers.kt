@@ -192,7 +192,8 @@ inline fun <T: Any> Stream<T>.reduceRight(f: (T, T) -> T): T?
 /// [4] Extrema ////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Return the maximum item of the stream according to [cmp] (same contract as [Comparator.compare]).
+ * Return the maximum item of the stream according to [cmp]
+ * (same contract as `java.util.Comparator.compare`).
  * If two items compare identical, the earliest will be preferred.
  */
 inline fun <T: Any> Stream<T>.maxWith(cmp: (T, T) -> Int): T?
@@ -201,7 +202,8 @@ inline fun <T: Any> Stream<T>.maxWith(cmp: (T, T) -> Int): T?
 // -------------------------------------------------------------------------------------------------
 
 /**
- * Return the minimum item of the stream according to [cmp] (same contract as [Comparator.compare]).
+ * Return the minimum item of the stream according to [cmp]
+ * (same contract as `java.util.Comparator.compare`).
  * If two items compare identical, the earliest will be preferred.
  */
 inline fun <T: Any> Stream<T>.minWith(cmp: (T, T) -> Int): T?

@@ -17,26 +17,59 @@ class LinkList<T: Any> (
     override var size: Int = link.iterator().stream().count())
 : Stack<T>, Cloneable
 {
+    // ---------------------------------------------------------------------------------------------
+
     /**
      * Builds a mutable linked list from [items].
      *
      * The items are inserted right-to-left (so the last item is in the innermost link, and
      * iteration order is order in which the items appear).
      */
-    constructor (vararg items: T) : this(null, 0) {
+    constructor (vararg items: T): this(null, 0) {
         items.reverseStream().each { push(it) }
     }
 
-    override fun stream(): PeekStream<T> = link.stream()
+    // ---------------------------------------------------------------------------------------------
+
+    override fun push(item: T) {
+        link = Link(item, link)
+        ++size
+    }
+
+    // ---------------------------------------------------------------------------------------------
+
+    override fun peek()
+        = link ?. item
+
+    // ---------------------------------------------------------------------------------------------
+
+    override fun pop()
+        = link ?. item ?. after { link = link?.next ; -- size }
+
+    // ---------------------------------------------------------------------------------------------
+
+    override fun stream(): PeekStream<T>
+         = link.stream()
+
+    // ---------------------------------------------------------------------------------------------
+
+    override public fun clone(): LinkList<T>
+        = LinkList(link, size)
+
+    // ---------------------------------------------------------------------------------------------
+
+    override fun toString()
+        = stream().joinToString()
+
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Returns a stream of the links composing this linked list.
      */
-    fun linkStream(): PeekStream<Link<T>> = link.linkStream()
+    fun linkStream(): PeekStream<Link<T>>
+        = link.linkStream()
 
-    override fun push(item: T) { link = Link(item, link) ; ++ size }
-    override fun peek(): T? = link ?. item
-    override fun pop(): T? = link ?. item ?. after { link = link?.next ; -- size }
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Returns a link list similar to this one, excluding its first element.
@@ -45,8 +78,7 @@ class LinkList<T: Any> (
     fun tail(): LinkList<T>
         = LinkList(link?.next, if (size > 0) size - 1 else 0)
 
-    override public fun clone(): LinkList<T> = LinkList(link, size)
-    override fun toString() = stream().joinToString()
+    // ---------------------------------------------------------------------------------------------
 
     /**
      * Shallow comparison: two link lists are equal if their [size] are the same and
@@ -57,5 +89,8 @@ class LinkList<T: Any> (
         && other.size === this.size
         && other.link === this.link
 
-    override fun hashCode() = (link?.hashCode() ?: 0) * 31 + size
+    // ---------------------------------------------------------------------------------------------
+
+    override fun hashCode()
+        = (link?.hashCode() ?: 0) * 31 + size
 }
