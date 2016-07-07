@@ -1,6 +1,7 @@
 .DS_Store
+/local.mk
+/pages
 /lib/
 /out/
-/src/Scratch.kt
 /.idea/workspace.xml
 /.idea/uiDesigner.xml
