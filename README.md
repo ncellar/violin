@@ -97,7 +97,7 @@ before continuing.
     make test
     make jar
     
-More targets (`docs`, `clean`, ...) available in the [makefile](blob/master/makefile).
+More targets (`docs`, `clean`, ...) available in the [makefile](makefile).
     
 # Documentation
 
