@@ -9,8 +9,8 @@ JCOMMA:="http://central.maven.org/maven2/com/beust/jcommander/$(JCOMMA_VER)/jcom
 DOKKA:="https://github.com/Kotlin/dokka/releases/download/$(DOKKA_VER)/dokka-fatjar.jar"
 KOTLIN:="https://github.com/JetBrains/kotlin/releases/download/v$(KOTLIN_VER)/kotlin-compiler-$(KOTLIN_VER).zip"
 
-ifeq ($(shell if [ -d lib/kotlinc ]; then echo "yes"; fi),yes)
-	KOTLINC:=lib/compiler/kotlinc
+ifeq ($(shell if [ -d kotlinc ]; then echo "yes"; fi),yes)
+	KOTLINC:=kotlinc/kotlinc
 else
 	KOTLINC:=kotlinc
 endif
@@ -41,25 +41,52 @@ buildtests:
 test:
 	java -cp $(testcp) org.testng.TestNG test/testng.xml -d out/test-output
 
-refresh: build buildtests test
+rebuild: build buildtests test
 
 clean:
 	rm -rf out
 
-fetchkotlin:
-	curl -L $(KOTLIN) > lib/compiler.zip
+kotlin:
+	curl -L $(KOTLIN) > compiler.zip
 	mkdir -p compiler
-	unzip lib/compiler.zip -d lib
-	rm lib/compiler.zip
+	unzip lib/compiler.zip -d .
+	rm compiler.zip
 
-fetchlibs:
+cleankotlin:
+	rm -rf kotlinc
+
+deps:
 	mkdir -p lib
 	curl -L $(DOKKA)	  > lib/dokka.jar
 	curl -L $(TESTNG)	  > lib/testng.jar
 	curl -L $(JCOMMA)     > lib/jcommander.jar
 
+cleandeps:
+	rm -rf lib
+
 jar:
-	jar cf out/violin-$(VERSION).jar out/production/*
+	find out -name .DS_Store -type f -delete
+	jar cf out/violin-$(VERSION).jar -C out/production .
+
+jars: jar
+	find src -name .DS_Store -type f -delete
+	jar cf out/violin-$(VERSION)-sources.jar -C src .
+	jar cf out/violin-$(VERSION)-javadoc.jar -C out/docs/java .
+	jar cf out/violin-$(VERSION)-kdoc.jar -C out/docs/kotlin .
+
+binup = curl -T out/violin-$(VERSION)$(1).jar -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
+		https://api.bintray.com/content/norswap/maven/violin/$(VERSION)/violin-$(VERSION)$(1).jar;publish=1
+
+publish:
+	$(call binup,)
+	$(call binup,-sources)
+	$(call binup,-javadoc)
+	$(call binup,-kdoc)
+	echo "\n"
+
+#	curl -T out/violin-$(VERSION).jar -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
+#	https://api.bintray.com/content/norswap/maven/violin/$(VERSION)/violin-$(VERSION).jar;publish=1
+
 
 docs:
 	mkdir -p out/docs/java
@@ -73,23 +100,19 @@ pubdocs:
 	cp -R out/docs/kotlin pages/kotlin
 	cd pages ; git add -A . ; git commit -m "update" ; git push
 
-publish:
-	curl -T out/violin-$(VERSION).jar -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
-	https://api.bintray.com/content/norswap/maven/violin/$(VERSION)/violin-$(VERSION).jar;publish=1
-	echo "\n"
-
-cleanlibs:
-	rm -rf lib
-
 .PHONY: \
   build \
   buildtests \
   test \
-  refresh \
+  rebuild \
   clean \
+  kotlin \
+  cleankotlin \
+  deps \
+  cleandeps \
   jar \
+  publish \
   docs \
-  publish
-
+  pubdocs
 
 .SILENT:
