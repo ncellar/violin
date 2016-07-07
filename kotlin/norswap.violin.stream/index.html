@@ -7,7 +7,22 @@
 <a href=".">norswap.violin.stream</a><br/>
 <br/>
 <h2>Package norswap.violin.stream</h2>
-<h3>Types</h3>
+<h3>Stream Operations</h3>
+<p>The extension functions for <a href="#">Stream</a> can be split in two categories: transformers and consumers.
+Transformers take a stream as input and return another stream. Consumers consume items from
+the stream in order to produce a value.</p>
+<h4>Transformers</h4>
+<ol><li><p>Mapping: <a href="#">map</a>, <a href="#">after</a>, <a href="#">fmap</a></p>
+</li><li><p>Filtering: <a href="#">filter</a>, <a href="#">filterMap</a>, <a href="#">upTo</a>, <a href="#">upThrough</a>, <a href="#">dropWhile</a>, <a href="#">drop</a>, <a href="#">takeWhile</a>, <a href="#">limit</a></p>
+</li><li><p>Other: <a href="#">indexed</a>, <a href="#">distinct</a>, <a href="#">distinctBy</a>, <a href="#">zip</a>, <a href="#">zipLong</a>, <a href="#">then</a></p>
+</li></ol><h4>Consumers</h4>
+<ol><li><p>Other: <a href="#">each</a>, <a href="#">last</a>, <a href="#">any</a>, <a href="#">all</a>, <a href="#">count</a></p>
+</li><li><p>Create Data Structures: <a href="#">mutableList</a>, <a href="#">list</a>, <a href="#">mutableSet</a>, <a href="#">set</a>, <a href="#">linkList</a>, <a href="#">stack</a>, <a href="#">array</a>, <a href="#">anyArray</a></p>
+</li><li><p>Reducing: <a href="#">foldl</a>, <a href="#">foldr</a>, <a href="#">reduce</a>, <a href="#">reduceRight</a></p>
+</li><li><p>Extrema: <a href="#">maxWith</a>, <a href="#">minWith</a>, <a href="#">max</a>, <a href="#">min</a></p>
+</li><li><p>Partition: <a href="#">associateMutable</a>, <a href="#">associate</a>, <a href="#">groupBy</a>, <a href="#">partition</a></p>
+</li><li><p>To String: <a href="#">joinTo</a>, <a href="#">jointToString</a></p>
+</li></ol><h3>Types</h3>
 <table>
 <tbody>
 <tr>
