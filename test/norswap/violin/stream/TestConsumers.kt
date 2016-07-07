@@ -69,9 +69,7 @@ import java.util.Comparator
     assertNull(Stream<Int>().max())
 }
 
-val intComparator = object: Comparator<Int> {
-    override fun compare(a: Int, b: Int) = a - b
-}
+val intComparator = Comparator<Int> { a, b -> a - b }
 
 @Test fun maxWith() {
     assertEquals(Stream(1, 2, 3).maxWith(intComparator), 3)
