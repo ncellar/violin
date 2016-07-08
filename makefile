@@ -27,8 +27,9 @@ include local.mk
 space:=$(eval) $(eval)
 # java supports "lib/*", but not kotlin
 jars:=$(subst $(space),$(SEP),$(shell find lib -name "*.jar"))
-cp:="out/production$(SEP)$(jars)"
-testcp:=$(cp)$(SEP)out/test
+basecp:=out/production$(SEP)$(jars)
+cp:="$(basecp)"
+testcp:="$(basecp)$(SEP)out/test"
 
 build:
 	mkdir -p out/production
