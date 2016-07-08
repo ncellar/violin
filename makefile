@@ -74,14 +74,19 @@ jars: jar
 	jar cf out/violin-$(VERSION)-javadoc.jar -C out/docs/java .
 	jar cf out/violin-$(VERSION)-kdoc.jar -C out/docs/kotlin .
 
-binup = curl -T out/violin-$(VERSION)$(1).jar -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
-		"https://api.bintray.com/content/norswap/maven/violin/$(VERSION)/violin-$(VERSION)$(1).jar;publish=1;override=1" ; echo "\n"
+BINTRAY_PATH:=https://api.bintray.com/content/norswap/maven/violin/$(VERSION)
+BINTRAY_PATH:=$(BINTRAY_PATH)/norswap/violin/$(VERSION)
+
+binup = curl -T out/violin-$(VERSION)$(1) -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
+		"$(BINTRAY_PATH)/violin-$(VERSION)$(1);publish=1;override=1" ; echo "\n"
 
 publish:
-	$(call binup,)
-	$(call binup,-sources)
-	$(call binup,-javadoc)
-	$(call binup,-kdoc)
+	sed "s/VERSION/$(VERSION)/g" violin.pom > out/violin-$(VERSION).pom
+	$(call binup,.pom)
+	$(call binup,.jar)
+	$(call binup,-sources.jar)
+	$(call binup,-javadoc.jar)
+	$(call binup,-kdoc.jar)
 
 docs:
 	mkdir -p out/docs/java
