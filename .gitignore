@@ -4,5 +4,6 @@
 /lib/
 /compiler/
 /out/
+/kotlinc/
 /.idea/workspace.xml
 /.idea/uiDesigner.xml

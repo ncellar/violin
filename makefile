@@ -10,7 +10,7 @@ DOKKA:="https://github.com/Kotlin/dokka/releases/download/$(DOKKA_VER)/dokka-fat
 KOTLIN:="https://github.com/JetBrains/kotlin/releases/download/v$(KOTLIN_VER)/kotlin-compiler-$(KOTLIN_VER).zip"
 
 ifeq ($(shell if [ -d kotlinc ]; then echo "yes"; fi),yes)
-	KOTLINC:=kotlinc/kotlinc
+	KOTLINC:=kotlinc/bin/kotlinc
 else
 	KOTLINC:=kotlinc
 endif
@@ -49,8 +49,7 @@ clean:
 
 kotlin:
 	curl -L $(KOTLIN) > compiler.zip
-	mkdir -p compiler
-	unzip lib/compiler.zip -d .
+	unzip compiler.zip -d .
 	rm compiler.zip
 
 cleankotlin:
