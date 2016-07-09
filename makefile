@@ -75,7 +75,7 @@ jars: jar
 	jar cf out/violin-$(VERSION)-kdoc.jar -C out/docs/kotlin .
 
 BINTRAY_PATH:=https://api.bintray.com/content/norswap/maven/violin/$(VERSION)
-BINTRAY_PATH:=$(BINTRAY_PATH)/norswap/violin/$(VERSION)
+BINTRAY_PATH:=$(BINTRAY_PATH)/com/norswap/violin/$(VERSION)
 
 binup = curl -T out/violin-$(VERSION)$(1) -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
 		"$(BINTRAY_PATH)/violin-$(VERSION)$(1);publish=1;override=1" ; echo "\n"
@@ -93,7 +93,7 @@ docs:
 	mkdir -p out/docs/kotlin
 	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp) \
 		-include src/norswap/violin/stream/package.md
-	java -cp $(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar org.jetbrains.dokka.MainKt src \
+	java -cp "$(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar" org.jetbrains.dokka.MainKt src \
 		 -output out/docs/java -format javadoc -classpath $(cp)
 
 pubdocs:

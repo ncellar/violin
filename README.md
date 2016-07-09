@@ -74,14 +74,14 @@ Download [the latest release](releases) and be include it in your classpath.
 ### Maven
 
     <dependency>
-      <groupId>norswap</groupId>
+      <groupId>com.norswap</groupId>
       <artifactId>violin</artifactId>
       <version>0.0.1</version>
     </dependency>
 
 ### Gradle
 
-    compile 'norswap:violin:0.0.1'
+    compile 'com.norswap:violin:0.0.1'
 
 ### Build from Source
 

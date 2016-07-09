@@ -6,7 +6,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>norswap</groupId>
+  <groupId>com.norswap</groupId>
   <artifactId>violin</artifactId>
   <version>VERSION</version>
   <packaging>jar</packaging>
