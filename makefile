@@ -63,7 +63,8 @@ deps:
 	curl -L $(JCOMMA)     > lib/jcommander.jar
 
 cleandeps:
-	rm -rf lib
+# leave the jars added by IntelliJ
+	find lib ! -name 'kotlin-*.jar' -type f -exec rm -f {} +
 
 jar:
 	find out -name .DS_Store -type f -delete
