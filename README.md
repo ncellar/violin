@@ -42,14 +42,11 @@ The stream interface is dead simple:
         fun stream(): T?
     }
 
-## Linked Lists
-
-Violin features [a flexible singly linked list implementation][lists].
-[lists]: http://norswap.com/violin/kotlin/norswap.violin.link/index.html
-
 ## Other
 
 - [Maybe][maybe]
+
+- A flexible [singly linked list][lists] implementation.
 
 - [Conversions][funcs] between functions with and without receivers, over pairs
   or multiple parameters.
@@ -57,7 +54,8 @@ Violin features [a flexible singly linked list implementation][lists].
 - A [stack][stack] interface.
 
 - [Other stuff][misc]
-  
+
+[lists]: http://norswap.com/violin/kotlin/norswap.violin.link/index.html
 [maybe]: http://norswap.com/violin/kotlin/norswap.violin/-maybe/index.html
 [funcs]: http://norswap.com/violin/kotlin/norswap.violin/index.html
 [stack]: http://norswap.com/violin/kotlin/norswap.violin/-stack/index.html
