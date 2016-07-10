@@ -1,3 +1,4 @@
+NAME:=violin
 VERSION:=0.1.0
 KOTLIN_VER:=1.0.3
 TESTNG_VER:=6.9.10
@@ -66,24 +67,24 @@ cleandeps:
 
 jar:
 	find out -name .DS_Store -type f -delete
-	jar cf out/violin-$(VERSION).jar -C out/production .
+	jar cf out/$(NAME)-$(VERSION).jar -C out/production .
 
 jars: jar
 	find src -name .DS_Store -type f -delete
-	jar cf out/violin-$(VERSION)-sources.jar -C src .
-	jar cf out/violin-$(VERSION)-javadoc.jar -C out/docs/java .
-	jar cf out/violin-$(VERSION)-kdoc.jar -C out/docs/kotlin .
+	jar cf out/$(NAME)-$(VERSION)-sources.jar -C src .
+	jar cf out/$(NAME)-$(VERSION)-javadoc.jar -C out/docs/java .
+	jar cf out/$(NAME)-$(VERSION)-kdoc.jar -C out/docs/kotlin .
 
-BINTRAY_PATH:=https://api.bintray.com/content/norswap/maven/violin/$(VERSION)
-BINTRAY_PATH:=$(BINTRAY_PATH)/com/norswap/violin/$(VERSION)
+BINTRAY_PATH:=https://api.bintray.com/content/norswap/maven/$(NAME)/$(VERSION)
+BINTRAY_PATH:=$(BINTRAY_PATH)/com/norswap/$(NAME)/$(VERSION)
 
-binup = curl -T out/violin-$(VERSION)$(1) -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
-		"$(BINTRAY_PATH)/violin-$(VERSION)$(1);publish=1;override=1" ; echo "\n"
+binup = curl -T out/$(NAME)-$(VERSION)$(1) -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
+		"$(BINTRAY_PATH)/$(NAME)-$(VERSION)$(1);publish=1;override=1" ; echo "\n"
 
-sign = gpg2 --yes -u 3BC67092 -ab out/violin-$(VERSION)$(1)
+sign = gpg2 --yes -u 3BC67092 -ab out/$(NAME)-$(VERSION)$(1)
 
 publish:
-	sed "s/VERSION/$(VERSION)/g" violin.pom > out/violin-$(VERSION).pom
+	sed "s/VERSION/$(VERSION)/g" $(NAME).pom > out/$(NAME)-$(VERSION).pom
 	$(call binup,.pom)
 	$(call binup,.jar)
 	$(call binup,-sources.jar)
@@ -101,19 +102,19 @@ publish:
 	$(call binup,-kdoc.jar.asc)
 	curl -d "username=$(SONATYPE_USER_TOKEN)&password=$(SONATYPE_PWD_TOKEN)" \
 		-u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
-		https://api.bintray.com/maven_central_sync/content/norswap/maven/violin/$(VERSION)
+		https://api.bintray.com/maven_central_sync/content/norswap/maven/$(NAME)/$(VERSION)
 
 docs:
 	mkdir -p out/docs/java
 	mkdir -p out/docs/kotlin
 	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp) \
-		-include src/norswap/violin/stream/package.md
+		-include src/norswap/$(NAME)/stream/package.md
 	java -cp "$(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar" org.jetbrains.dokka.MainKt src \
 		-output out/docs/java -format javadoc -classpath $(cp)
 
 pubdocs:
 	rm -rf pages/*
-	cp violin.html pages/index.html
+	cp $(NAME).html pages/index.html
 	cp -R out/docs/java pages/java
 	cp -R out/docs/kotlin pages/kotlin
 	cd pages ; git add -A . ; git commit -m "update" ; git push origin gh-pages
