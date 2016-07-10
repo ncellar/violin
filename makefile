@@ -106,13 +106,14 @@ docs:
 	java -jar lib/dokka.jar src -output out/docs/kotlin -classpath $(cp) \
 		-include src/norswap/violin/stream/package.md
 	java -cp "$(JAVA_HOME)/lib/tools.jar$(SEP)lib/dokka.jar" org.jetbrains.dokka.MainKt src \
-		 -output out/docs/java -format javadoc -classpath $(cp)
+		-output out/docs/java -format javadoc -classpath $(cp)
 
 pubdocs:
 	rm -rf pages/*
+	cp violin.html pages/index.html
 	cp -R out/docs/java pages/java
 	cp -R out/docs/kotlin pages/kotlin
-	cd pages ; git add -A . ; git commit -m "update" ; git push
+	cd pages ; git add -A . ; git commit -m "update" ; git push origin gh-pages
 
 .PHONY: \
   build \
