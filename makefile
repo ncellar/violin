@@ -80,6 +80,8 @@ BINTRAY_PATH:=$(BINTRAY_PATH)/com/norswap/violin/$(VERSION)
 binup = curl -T out/violin-$(VERSION)$(1) -u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
 		"$(BINTRAY_PATH)/violin-$(VERSION)$(1);publish=1;override=1" ; echo "\n"
 
+sign = gpg2 --yes -u 3BC67092 -ab out/violin-$(VERSION)$(1)
+
 publish:
 	sed "s/VERSION/$(VERSION)/g" violin.pom > out/violin-$(VERSION).pom
 	$(call binup,.pom)
@@ -87,6 +89,16 @@ publish:
 	$(call binup,-sources.jar)
 	$(call binup,-javadoc.jar)
 	$(call binup,-kdoc.jar)
+	$(call sign,.pom)
+	$(call sign,.jar)
+	$(call sign,-sources.jar)
+	$(call sign,-javadoc.jar)
+	$(call sign,-kdoc.jar)
+	$(call binup,.pom.asc)
+	$(call binup,.jar.asc)
+	$(call binup,-sources.jar.asc)
+	$(call binup,-javadoc.jar.asc)
+	$(call binup,-kdoc.jar.asc)
 
 docs:
 	mkdir -p out/docs/java
