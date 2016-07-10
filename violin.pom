@@ -34,7 +34,9 @@
   </developers>
 
   <scm>
-    <url>https://github.com/norswap/violin</url>
+    <connection>scm:git:git://github.com/norswap/violin.git</connection>
+    <developerConnection>scm:git:ssh://github.com:norswap/violin.git</developerConnection>
+    <url>https://github.com/norswap/violin/tree/master</url>
   </scm>
 
   <dependencies>
