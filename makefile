@@ -21,7 +21,7 @@ else
 	SEP:=:
 endif
 
-# defines BINTRAY_USER and BINTRAY_API_KEY
+# defines BINTRAY_XXX and SONATYPE_XXX
 include local.mk
 
 space:=$(eval) $(eval)
@@ -99,6 +99,9 @@ publish:
 	$(call binup,-sources.jar.asc)
 	$(call binup,-javadoc.jar.asc)
 	$(call binup,-kdoc.jar.asc)
+	curl -d "username=$(SONATYPE_USER_TOKEN)&password=$(SONATYPE_PWD_TOKEN)" \
+		-u$(BINTRAY_USER):$(BINTRAY_API_KEY) \
+		https://api.bintray.com/maven_central_sync/content/norswap/maven/violin/$(VERSION)
 
 docs:
 	mkdir -p out/docs/java
