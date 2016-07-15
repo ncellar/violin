@@ -6,10 +6,10 @@ It tries to be **human-sized**, i.e., small enough that its code can be quickly
 understood without significant time investment. Hence, it focuses on a few
 orthogonal features and good documentation.
 
-- [Presentation](#Presentation)
-- [Installation](#Installation)
-- [Documentation](#Documentation)
-- [Roadmap](#Roadmap)
+- [Presentation](#presentation)
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Roadmap](#roadmap)
 - [License (BSD-3)](LICENSE.md)
 
 # Presentation
