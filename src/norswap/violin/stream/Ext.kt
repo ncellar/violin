@@ -41,12 +41,30 @@ fun <T: Any> Iterator<T>.stream(): Stream<T>
 // -------------------------------------------------------------------------------------------------
 
 /**
+ * Converts an iterator into a stream, or an empty stream if null.
+ * (f = force)
+ */
+fun <T: Any> Iterator<T>?.fstream(): Stream<T>
+    = if (this == null) Stream<T>() else this.stream()
+
+// -------------------------------------------------------------------------------------------------
+
+/**
  * Converts a java stream into a violin stream.
  */
 fun <T: Any> java.util.stream.Stream<T>.stream(): Stream<T> {
     val iterator = iterator()
     return Stream { if (iterator.hasNext()) iterator.next() else null }
 }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Converts a java stream into a violin stream, or an empty stream if null.
+ * (f = force)
+ */
+fun <T: Any> java.util.stream.Stream<T>?.fstream(): Stream<T>
+    = if (this == null) Stream<T>() else this.stream()
 
 // -------------------------------------------------------------------------------------------------
 
@@ -59,10 +77,28 @@ fun <T: Any> Iterable<T>.stream(): Stream<T>
 // -------------------------------------------------------------------------------------------------
 
 /**
+ * Returns a stream consisting of the items of the iterable, or an empty stream if null.
+ * (f = force)
+ */
+fun <T: Any> Iterable<T>?.fstream(): Stream<T>
+    = if (this == null) Stream<T>() else this.stream()
+
+// -------------------------------------------------------------------------------------------------
+
+/**
  * Returns a stream consisting of the items of the sequence.
  */
 fun <T: Any> Sequence<T>.stream(): Stream<T>
     = iterator().stream()
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Returns a stream consisting of the items of the sequence, or an empty stream if null.
+ * (f = force)
+ */
+fun <T: Any> Sequence<T>?.fstream(): Stream<T>
+    = if (this == null) Stream<T>() else this.stream()
 
 /// [3] Conversion from Stream /////////////////////////////////////////////////////////////////////
 
