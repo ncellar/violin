@@ -76,7 +76,7 @@ fun <T> Any?.cast() = this as T
  * The last item in the sequence has index `length-1` (same as `-1`).
  *
  * The [start] bound is always inclusive.
- * The [end] bound is exclusive if positive, else exclusive.
+ * The [end] bound is exclusive if positive, else inclusive.
  *
  * Throws an [IndexOutOfBoundsException] if the [start] bounds refers to an index below `0` or
  * if [end] refers to an index equal to or past `CharSequence.length`.
