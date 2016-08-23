@@ -28,7 +28,7 @@ inline fun <T: Any, R: Any> Stream<T>.map(crossinline f: (T) -> R): Stream<R>
  * Returns a stream that yields the same items as this stream, but applying [f] to each
  * item before yielding it.
  */
-inline fun <T: Any> Stream<T>.after(crossinline f: (T) -> Unit): Stream<T>
+inline fun <T: Any> Stream<T>.applyEach(crossinline f: (T) -> Unit): Stream<T>
     = Stream { next()?.after(f) }
 
 // -------------------------------------------------------------------------------------------------

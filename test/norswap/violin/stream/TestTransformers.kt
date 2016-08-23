@@ -6,15 +6,9 @@ import org.testng.Assert.*
     assertEquals(Stream(1, 2, 3).map { it + 1 }.list(), listOf(2, 3, 4))
 }
 
-@Test fun apply() {
+@Test fun applyEach() {
     val list = mutableListOf<Int>()
-    Stream(1, 2, 3).after { list.add(it) }.each {}
-    assertEquals(list, listOf(1, 2, 3))
-}
-
-@Test fun after() {
-    val list = mutableListOf<Int>()
-    Stream(1, 2, 3).after { list.add(it) }.each {}
+    Stream(1, 2, 3).applyEach { list.add(it) }.each {}
     assertEquals(list, listOf(1, 2, 3))
 }
 
