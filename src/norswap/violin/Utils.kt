@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch")
 package norswap.violin.utils
+import java.io.PrintWriter
+import java.io.StringWriter
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.Comparator
@@ -118,5 +120,16 @@ fun <T, U: Comparable<U>> comparator(f: (T) -> U)
  */
 fun <T, U> Comparator<U>.derive(f: (T) -> U)
     = Comparator<T> { o1, o2 -> compare(f(o1), f(o2)) }
+
+// -------------------------------------------------------------------------------------------------
+
+/**
+ * Returns a string representation of the Throwable's stack trace.
+ */
+fun Throwable.stackTraceString(): String {
+    val sw = StringWriter()
+    printStackTrace(PrintWriter(sw))
+    return sw.toString()
+}
 
 // -------------------------------------------------------------------------------------------------
