@@ -34,9 +34,6 @@ fun <T: Any> T.transitive(f: (T) -> T?): Stream<T> {
 
 /**
  * Converts an iterator into a stream.
- *
- * Be cautious: this assumes the iterator is finite and so returns a [Stream].
- * If not so, assign the result to a [Stream] to avoid errors.
  */
 fun <T: Any> Iterator<T>.stream(): Stream<T>
     = Stream { if (hasNext()) next() else null }
